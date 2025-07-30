@@ -18,7 +18,6 @@ namespace DAL.Repositories
         {
             _context = new AppDbContext();
         }
-
         public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders

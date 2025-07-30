@@ -1,4 +1,5 @@
 ﻿using DAL.Dto;
+using DAL.Entities;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -63,5 +64,13 @@ namespace BLL.Services
             return result;
         }
 
+        public List<Order> GetOrderByPatientId(Guid patientId)
+        {
+            return _orderRepository.GetOrdersByPatientId(patientId);
+        }
+        public List<Order> GetOrderByDoctorId(Guid doctorId)
+        {
+            return _orderRepository.GetOrdersByPatientId(doctorId);
+        }
     }
 }

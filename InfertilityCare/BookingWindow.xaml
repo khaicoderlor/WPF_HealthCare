@@ -1,0 +1,51 @@
+﻿<Window x:Class="YourNamespace.BookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Treatment Booking" Height="450" Width="500"
+        WindowStartupLocation="CenterScreen" Background="#F8FAFF">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Book Treatment Appointment" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Treatment protocol -->
+            <TextBlock Text="Treatment protocol:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10"/>
+            <ComboBox x:Name="cbService" Width="250" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="cbService_SelectionChanged"/>
+
+            <!-- Doctor -->
+            <TextBlock Text="Doctor:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,10,10"/>
+            <ComboBox x:Name="cbDoctor" Width="250" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" DisplayMemberPath="FullName" SelectedValuePath="Id"/>
+
+            <!-- Date -->
+            <TextBlock Text="Date:" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,10,10"/>
+            <DatePicker x:Name="dpDate" Width="250" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" SelectedDateChanged="dpDate_SelectedDateChanged"/>
+
+            <!-- Time slot -->
+            <TextBlock Text="Time slot:" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="0,0,10,10"/>
+            <ComboBox x:Name="cbSlot" Width="250" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10"/>
+
+            <!-- Embryo freezing (IVF only) -->
+           
+            <CheckBox x:Name="chkFrozen" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" Visibility="Collapsed"/>
+        </Grid>
+
+        <Button Content="Book Appointment" Grid.Row="2" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,24,0,0" Click="BtnBooking_Click"/>
+    </Grid>
+</Window>
