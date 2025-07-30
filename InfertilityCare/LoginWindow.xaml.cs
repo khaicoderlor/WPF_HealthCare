@@ -38,18 +38,23 @@ namespace InfertilityCare
             try
             {
                 var authentication = _userService.Authenticate(txtEmail.Text, txtPassword.Password);
-                if(authentication is not null)
+                if (authentication is not null)
                 {
-                    if (_polices.NoPolices(authentication))
-                    {
-                        MessageBox.Show($"You are not authorized to access this application!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
-                    }
-                    else
+                    if (_polices.IsPatient(authentication))
                     {
                         MainWindow home = new MainWindow(authentication);
                         home.Show();
                         this.Close();
+                    }
+                    else if (_polices.IsDoctor(authentication))
+                    {
+                        MainDoctorWindow doctorWindow = new MainDoctorWindow();
+                        doctorWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"You are not authorized to access this application!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else

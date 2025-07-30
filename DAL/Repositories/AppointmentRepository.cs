@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL.Context;
+using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,27 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    internal class AppointmentRepository
+    public class AppointmentRepository
     {
+
+        private readonly AppDbContext _appDbContext;
+
+        public AppointmentRepository()
+        {
+            _appDbContext = new AppDbContext();
+        }
+
+        public Appointment? CreateAppointment(Appointment appointment)
+        {
+            _appDbContext.Appointments.Add(appointment);
+            _appDbContext.SaveChanges();
+            return appointment;
+        }
+
+        public void SaveChanges()
+        {
+            _appDbContext.SaveChanges();
+        }
+
     }
 }

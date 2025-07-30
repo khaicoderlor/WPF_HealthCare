@@ -6,146 +6,202 @@
         xmlns:local="clr-namespace:InfertilityCare"
         mc:Ignorable="d"
         Title="Doctor Dashboard" 
-        Height="600" 
-        Width="1000"
+        Height="750" 
+        Width="1200"
         WindowStartupLocation="CenterScreen"
-        Background="#F0F0F0">
+        WindowState="Maximized"
+        Background="#FAFAFA">
+
+    <Window.Resources>
+        <!-- Gentle Color Brushes -->
+        <SolidColorBrush x:Key="SidebarColor" Color="#F5F7FA"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#8B9DC3"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#2D3748"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#718096"/>
+        <SolidColorBrush x:Key="CardBackground" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#E2E8F0"/>
+
+        <!-- Simple Button Style -->
+        <Style x:Key="SimpleButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="Margin" Value="5,2"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalAlignment="Center"
+                                            Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E2E8F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Active Button Style -->
+        <Style x:Key="ActiveButton" TargetType="Button" BasedOn="{StaticResource SimpleButton}">
+            <Setter Property="Background" Value="#E2E8F0"/>
+            <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <!-- Simple Card Style -->
+        <Style x:Key="SimpleCard" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource CardBackground}"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="260"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar -->
-        <Border Grid.Column="0" Background="White" BorderBrush="#CCCCCC" BorderThickness="0,0,1,0">
-            <StackPanel Margin="15">
+        <!-- Simple Sidebar -->
+        <Border Grid.Column="0" Background="{StaticResource SidebarColor}" BorderBrush="{StaticResource BorderColor}" BorderThickness="0,0,1,0">
+            <StackPanel Margin="0,20">
+                <!-- Simple Header -->
+                <StackPanel HorizontalAlignment="Center" Margin="0,10,0,30">
+                    <Border Width="50" Height="50" 
+                            Background="{StaticResource AccentColor}" 
+                            CornerRadius="25"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,12">
+                        <TextBlock Text="👨‍⚕️" 
+                                 FontSize="20" 
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="InfertilityCare"
+                             FontSize="16"
+                             FontWeight="SemiBold"
+                             Foreground="{StaticResource TextPrimary}"
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,4"/>
+                    <TextBlock Text="Doctor Portal"
+                             FontSize="12"
+                             Foreground="{StaticResource TextSecondary}"
+                             HorizontalAlignment="Center"/>
+                </StackPanel>
 
-                <!-- Header -->
-                <TextBlock Text="Doctor Portal" 
-                         FontSize="16" 
-                         FontWeight="Bold" 
-                         Foreground="#333333" 
-                         HorizontalAlignment="Center"
-                         Margin="0,10,0,20"/>
+                <!-- Simple Navigation -->
+                <StackPanel Margin="15,0">
+                    <Button Style="{StaticResource ActiveButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📊" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Dashboard" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <!-- Navigation Buttons -->
-                <Button Background="#2196F3" 
-                      Foreground="White" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="📊" Margin="0,0,8,0"/>
-                        <TextBlock Text="Dashboard"/>
-                    </StackPanel>
-                </Button>
+                    <Button Style="{StaticResource SimpleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="👥" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Patients" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Background="Transparent" 
-                      Foreground="#333333" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="👥" Margin="0,0,8,0"/>
-                        <TextBlock Text="My Patients"/>
-                    </StackPanel>
-                </Button>
+                    <Button Style="{StaticResource SimpleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📅" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Appointments" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Background="Transparent" 
-                      Foreground="#333333" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="📈" Margin="0,0,8,0"/>
-                        <TextBlock Text="Reports"/>
-                    </StackPanel>
-                </Button>
+                    <Button Style="{StaticResource SimpleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📋" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Records" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Background="Transparent" 
-                      Foreground="#333333" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="📅" Margin="0,0,8,0"/>
-                        <TextBlock Text="Appointments"/>
-                    </StackPanel>
-                </Button>
+                    <Button Style="{StaticResource SimpleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📈" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Reports" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Background="Transparent" 
-                      Foreground="#333333" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="💊" Margin="0,0,8,0"/>
-                        <TextBlock Text="Treatments"/>
-                    </StackPanel>
-                </Button>
+                    <!-- Simple Separator -->
+                    <Rectangle Height="1" Fill="{StaticResource BorderColor}" Margin="10,20,10,15"/>
 
-                <!-- Separator -->
-                <Rectangle Height="1" Fill="#CCCCCC" Margin="0,20,0,10"/>
+                    <Button Style="{StaticResource SimpleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="⚙️" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Settings" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <!-- Bottom Buttons -->
-                <Button Background="Transparent" 
-                      Foreground="#333333" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="⚙️" Margin="0,0,8,0"/>
-                        <TextBlock Text="Settings"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Background="Transparent" 
-                      Foreground="#333333" 
-                      Padding="10,8" 
-                      BorderThickness="0" 
-                      Margin="0,2"
-                      HorizontalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="🚪" Margin="0,0,8,0"/>
-                        <TextBlock Text="Logout"/>
-                    </StackPanel>
-                </Button>
-
+                    <Button Style="{StaticResource SimpleButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🚪" FontSize="14" Margin="0,0,12,0"/>
+                            <TextBlock Text="Logout" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Border>
 
         <!-- Main Content -->
-        <Grid Grid.Column="1" Margin="20">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Header -->
-            <StackPanel Grid.Row="0" Margin="0,0,0,20">
-                <TextBlock Text="Dashboard" 
-                         FontSize="20" 
-                         FontWeight="Bold" 
-                         Foreground="#333333"/>
-                <TextBlock Text="Welcome back, Dr. Smith" 
-                         FontSize="12" 
-                         Foreground="#666666" 
-                         Margin="0,5,0,0"/>
-            </StackPanel>
+            <!-- Simple Header -->
+            <Border Grid.Row="0" Background="{StaticResource CardBackground}" Padding="25,20" BorderBrush="{StaticResource BorderColor}" BorderThickness="0,0,0,1">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock Text="Dashboard"
+                                 FontSize="22"
+                                 FontWeight="SemiBold"
+                                 Foreground="{StaticResource TextPrimary}"/>
+                        <TextBlock Text="Welcome back, Dr. Smith"
+                                 FontSize="14"
+                                 Foreground="{StaticResource TextSecondary}"
+                                 Margin="0,4,0,0"/>
+                    </StackPanel>
 
-            <!-- Content -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Border Background="#F7FAFC" CornerRadius="6" Padding="12,8" Margin="0,0,12,0" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="📅" FontSize="12" Margin="0,0,8,0"/>
+                                <TextBlock Text="March 15, 2024" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="{StaticResource AccentColor}" CornerRadius="20" Width="40" Height="40">
+                            <TextBlock Text="DS" FontSize="12" FontWeight="SemiBold" 
+                                     Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Main Content -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="25,20">
                 <StackPanel>
 
-                    <!-- Stats Cards -->
-                    <Grid Margin="0,0,0,20">
+                    <!-- Simple Stats Cards -->
+                    <Grid Margin="0,0,0,25">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -153,74 +209,68 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" 
-                              Background="White" 
-                              BorderBrush="#DDDDDD" 
-                              BorderThickness="1" 
-                              Padding="15" 
-                              Margin="5">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="👥" FontSize="18"/>
-                                <TextBlock Text="156" FontSize="20" FontWeight="Bold" Foreground="#2196F3" Margin="0,5,0,0"/>
-                                <TextBlock Text="Total Patients" FontSize="10" Foreground="#666666"/>
+                        <!-- Patients Card -->
+                        <Border Grid.Column="0" Style="{StaticResource SimpleCard}">
+                            <StackPanel>
+                                <Border Background="#F7FAFC" CornerRadius="8" Width="40" Height="40" HorizontalAlignment="Left" Margin="0,0,0,12">
+                                    <TextBlock Text="👥" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="156" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Total Patients" FontSize="13" Foreground="{StaticResource TextSecondary}"/>
+                                <TextBlock Text="+12 this month" FontSize="11" Foreground="{StaticResource AccentColor}" Margin="0,6,0,0"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="1" 
-                              Background="White" 
-                              BorderBrush="#DDDDDD" 
-                              BorderThickness="1" 
-                              Padding="15" 
-                              Margin="5">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="⚡" FontSize="18"/>
-                                <TextBlock Text="89" FontSize="20" FontWeight="Bold" Foreground="#4CAF50" Margin="0,5,0,0"/>
-                                <TextBlock Text="Active Cases" FontSize="10" Foreground="#666666"/>
+                        <!-- Active Cases Card -->
+                        <Border Grid.Column="1" Style="{StaticResource SimpleCard}">
+                            <StackPanel>
+                                <Border Background="#F0FDF4" CornerRadius="8" Width="40" Height="40" HorizontalAlignment="Left" Margin="0,0,0,12">
+                                    <TextBlock Text="⚡" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="89" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Active Cases" FontSize="13" Foreground="{StaticResource TextSecondary}"/>
+                                <TextBlock Text="+8 this week" FontSize="11" Foreground="#22C55E" Margin="0,6,0,0"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="2" 
-                              Background="White" 
-                              BorderBrush="#DDDDDD" 
-                              BorderThickness="1" 
-                              Padding="15" 
-                              Margin="5">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="📅" FontSize="18"/>
-                                <TextBlock Text="8" FontSize="20" FontWeight="Bold" Foreground="#FF9800" Margin="0,5,0,0"/>
-                                <TextBlock Text="Today" FontSize="10" Foreground="#666666"/>
+                        <!-- Today's Schedule -->
+                        <Border Grid.Column="2" Style="{StaticResource SimpleCard}">
+                            <StackPanel>
+                                <Border Background="#FFFBEB" CornerRadius="8" Width="40" Height="40" HorizontalAlignment="Left" Margin="0,0,0,12">
+                                    <TextBlock Text="📅" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="8" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Today's Schedule" FontSize="13" Foreground="{StaticResource TextSecondary}"/>
+                                <TextBlock Text="2 pending" FontSize="11" Foreground="#F59E0B" Margin="0,6,0,0"/>
                             </StackPanel>
                         </Border>
 
-                        <Border Grid.Column="3" 
-                              Background="White" 
-                              BorderBrush="#DDDDDD" 
-                              BorderThickness="1" 
-                              Padding="15" 
-                              Margin="5">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="⭐" FontSize="18"/>
-                                <TextBlock Text="82%" FontSize="20" FontWeight="Bold" Foreground="#9C27B0" Margin="0,5,0,0"/>
-                                <TextBlock Text="Success Rate" FontSize="10" Foreground="#666666"/>
+                        <!-- Success Rate -->
+                        <Border Grid.Column="3" Style="{StaticResource SimpleCard}">
+                            <StackPanel>
+                                <Border Background="#FDF2F8" CornerRadius="8" Width="40" Height="40" HorizontalAlignment="Left" Margin="0,0,0,12">
+                                    <TextBlock Text="📈" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="94%" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Success Rate" FontSize="13" Foreground="{StaticResource TextSecondary}"/>
+                                <TextBlock Text="+3% improvement" FontSize="11" Foreground="#EC4899" Margin="0,6,0,0"/>
                             </StackPanel>
                         </Border>
                     </Grid>
 
                     <!-- Recent Activity -->
-                    <Border Background="White" 
-                          BorderBrush="#DDDDDD" 
-                          BorderThickness="1" 
-                          Padding="15" 
-                          Margin="5,0,5,20">
+                    <Border Style="{StaticResource SimpleCard}" Margin="8,0">
                         <StackPanel>
-                            <TextBlock Text="Recent Activity" 
-                                     FontSize="16" 
-                                     FontWeight="Bold" 
-                                     Foreground="#333333" 
-                                     Margin="0,0,0,15"/>
+                            <Grid Margin="0,0,0,20">
+                                <TextBlock Text="Recent Activity" FontSize="16" FontWeight="Medium" Foreground="{StaticResource TextPrimary}"/>
+                                <TextBlock Text="View All" FontSize="12" Foreground="{StaticResource AccentColor}" HorizontalAlignment="Right" 
+                                         VerticalAlignment="Center" Cursor="Hand"/>
+                            </Grid>
 
+                            <!-- Activity Items -->
                             <StackPanel>
-                                <Border Background="#F5F5F5" Padding="10" Margin="0,0,0,5">
+                                <!-- Activity Item 1 -->
+                                <Border Background="#FAFAFA" CornerRadius="6" Padding="15" Margin="0,0,0,8">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -228,16 +278,21 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Text="👤" FontSize="14" Margin="0,0,10,0"/>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="New patient consultation" FontSize="12" FontWeight="Bold"/>
-                                            <TextBlock Text="Sarah Johnson - Initial assessment" FontSize="10" Foreground="#666666"/>
+                                        <Border Grid.Column="0" Background="#F7FAFC" CornerRadius="20" Width="36" Height="36" Margin="0,0,12,0">
+                                            <TextBlock Text="👤" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="New patient consultation" FontSize="13" FontWeight="Medium" Foreground="{StaticResource TextPrimary}"/>
+                                            <TextBlock Text="Sarah Johnson - Initial assessment" FontSize="11" Foreground="{StaticResource TextSecondary}" Margin="0,2,0,0"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="5 min ago" FontSize="10" Foreground="#999999"/>
+
+                                        <TextBlock Grid.Column="2" Text="5 min ago" FontSize="11" Foreground="{StaticResource TextSecondary}" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
 
-                                <Border Background="#F5F5F5" Padding="10" Margin="0,0,0,5">
+                                <!-- Activity Item 2 -->
+                                <Border Background="#FAFAFA" CornerRadius="6" Padding="15" Margin="0,0,0,8">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -245,16 +300,21 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Text="📋" FontSize="14" Margin="0,0,10,0"/>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="Lab results received" FontSize="12" FontWeight="Bold"/>
-                                            <TextBlock Text="Michael Davis - Blood work complete" FontSize="10" Foreground="#666666"/>
+                                        <Border Grid.Column="0" Background="#F0FDF4" CornerRadius="20" Width="36" Height="36" Margin="0,0,12,0">
+                                            <TextBlock Text="📋" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="Lab results received" FontSize="13" FontWeight="Medium" Foreground="{StaticResource TextPrimary}"/>
+                                            <TextBlock Text="Michael Davis - Blood work complete" FontSize="11" Foreground="{StaticResource TextSecondary}" Margin="0,2,0,0"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="20 min ago" FontSize="10" Foreground="#999999"/>
+
+                                        <TextBlock Grid.Column="2" Text="20 min ago" FontSize="11" Foreground="{StaticResource TextSecondary}" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
 
-                                <Border Background="#F5F5F5" Padding="10">
+                                <!-- Activity Item 3 -->
+                                <Border Background="#FAFAFA" CornerRadius="6" Padding="15">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -262,75 +322,19 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Text="💊" FontSize="14" Margin="0,0,10,0"/>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="Treatment updated" FontSize="12" FontWeight="Bold"/>
-                                            <TextBlock Text="Emma Wilson - Medication adjusted" FontSize="10" Foreground="#666666"/>
+                                        <Border Grid.Column="0" Background="#FFFBEB" CornerRadius="20" Width="36" Height="36" Margin="0,0,12,0">
+                                            <TextBlock Text="💊" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="Treatment plan updated" FontSize="13" FontWeight="Medium" Foreground="{StaticResource TextPrimary}"/>
+                                            <TextBlock Text="Emma Wilson - Medication adjusted" FontSize="11" Foreground="{StaticResource TextSecondary}" Margin="0,2,0,0"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="2" Text="1 hour ago" FontSize="10" Foreground="#999999"/>
+
+                                        <TextBlock Grid.Column="2" Text="1 hour ago" FontSize="11" Foreground="{StaticResource TextSecondary}" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Quick Actions -->
-                    <Border Background="White" 
-                          BorderBrush="#DDDDDD" 
-                          BorderThickness="1" 
-                          Padding="15" 
-                          Margin="5">
-                        <StackPanel>
-                            <TextBlock Text="Quick Actions" 
-                                     FontSize="16" 
-                                     FontWeight="Bold" 
-                                     Foreground="#333333" 
-                                     Margin="0,0,0,15"/>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0" Margin="0,0,5,0">
-                                    <Button Background="#2196F3" 
-                                          Foreground="White" 
-                                          Padding="10,8" 
-                                          BorderThickness="0" 
-                                          Margin="0,0,0,5"
-                                          HorizontalAlignment="Stretch">
-                                        <TextBlock Text="➕ Add Patient"/>
-                                    </Button>
-
-                                    <Button Background="#4CAF50" 
-                                          Foreground="White" 
-                                          Padding="10,8" 
-                                          BorderThickness="0" 
-                                          HorizontalAlignment="Stretch">
-                                        <TextBlock Text="📅 Schedule"/>
-                                    </Button>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="5,0,0,0">
-                                    <Button Background="#FF9800" 
-                                          Foreground="White" 
-                                          Padding="10,8" 
-                                          BorderThickness="0" 
-                                          Margin="0,0,0,5"
-                                          HorizontalAlignment="Stretch">
-                                        <TextBlock Text="📊 Report"/>
-                                    </Button>
-
-                                    <Button Background="#9C27B0" 
-                                          Foreground="White" 
-                                          Padding="10,8" 
-                                          BorderThickness="0" 
-                                          HorizontalAlignment="Stretch">
-                                        <TextBlock Text="💊 Treatment"/>
-                                    </Button>
-                                </StackPanel>
-                            </Grid>
                         </StackPanel>
                     </Border>
 
