@@ -1,5 +1,6 @@
 ﻿using DAL.Context;
 using DAL.Entities;
+using DAL.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,35 @@ namespace DAL.Repositories
     {
         private readonly AppDbContext _context;
 
-        public OrderRepository(AppDbContext context)
+        public OrderRepository()
         {
-            _context = context;
+            _context = new AppDbContext();
         }
 
-        public Task<List<Order>> GetOrdersByPatientIdAsync(Guid patientId)
+        public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders
                 .Where(o => o.PatientId == patientId)
-                .ToListAsync();
+                .ToList();
+        }
+
+        public Order GetOrderWithSteps(int orderId)
+        {
+            return _context.Orders.FirstOrDefault(o => o.Id == orderId);
+        }
+
+        public Order? UpdateStatusById(int id, OrderStatus status)
+        {
+            var order = _context.Orders
+                .FirstOrDefault(o => o.Id == id);
+            
+            if (order == null)
+            {
+                throw new NullReferenceException($"Order with ID {id} not found.");
+            }
+            order.Status = status;
+            _context.SaveChanges();
+            return order;
         }
     }
 }

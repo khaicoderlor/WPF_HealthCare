@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfertilityCare"
         mc:Ignorable="d"
-        Title="Thông tin hồ sơ" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="User profile" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#FAFAFA" Margin="20">
         <Grid.RowDefinitions>
@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="HỒ SƠ BỆNH NHÂN" 
+        <TextBlock Text="USER PROFILE" 
                    FontSize="22" FontWeight="Bold" 
                    Foreground="#2C3E50" 
                    HorizontalAlignment="Center" 
@@ -26,7 +26,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Họ và tên:" VerticalAlignment="Center"/>
+                <TextBlock Text="FullName:" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtFullName" Grid.Column="1" Margin="10,0"/>
             </Grid>
 
@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Ngày sinh:" VerticalAlignment="Center"/>
+                <TextBlock Text="Date of birth:" VerticalAlignment="Center"/>
                 <DatePicker x:Name="dpDOB" Grid.Column="1" Margin="10,0"/>
             </Grid>
 
@@ -46,7 +46,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Họ tên người phối ngẫu:" VerticalAlignment="Center"/>
+                <TextBlock Text="Partient full name:" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtPartnerFullName" Grid.Column="1" Margin="10,0"/>
             </Grid>
 
@@ -56,11 +56,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Email người phối ngẫu:" VerticalAlignment="Center"/>
+                <TextBlock Text="Partient email:" VerticalAlignment="Center"/>
                 <TextBox x:Name="txtPartnerEmail" Grid.Column="1" Margin="10,0"/>
             </Grid>
 
-            <Button Content="Lưu hồ sơ" Width="120" Height="35" 
+            <Button Content="Save profile" Width="120" Height="35" 
                     HorizontalAlignment="Right"
                     Click="BtnSave_Click"
                     Background="#2ECC71" Foreground="White" FontWeight="Bold"/>
