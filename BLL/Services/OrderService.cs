@@ -17,21 +17,26 @@ namespace BLL.Services
             _orderRepository = orderRepository;
         }
 
-        public async Task<List<OrderViewModel>> GetOrdersForPatientAsync(Guid patientId)
+        public Task<List<OrderViewModel>> GetOrdersForPatientAsync(Guid patientId)
         {
-            var orders = await _orderRepository.GetOrdersByPatientIdAsync(patientId);
+            return _orderRepository.GetOrdersByPatientIdAsync(patientId)
+                .ContinueWith(task =>
+                {
+                    var orders = task.Result;
 
-            var result = orders.Select(o => new OrderViewModel
-            {
-                Id = o.Id,
-                ServiceName = o.Service?.Name ?? "(Không có)",
-                DoctorName = o.Doctor?.FullName ?? "(Không rõ)",
-                Status = o.Status.ToString(),
-                StartDate = o.StartDate,
-                EndDate = o.EndDate
-            }).ToList();
+                    var result = orders.Select(o => new OrderViewModel
+                    {
+                        Id = o.Id,
+                        ServiceName = o.Service?.Name ?? "(Không có)",
+                        DoctorName = o.Doctor?.FullName ?? "(Không rõ)",
+                        Status = o.Status.ToString(),
+                        StartDate = o.StartDate,
+                        EndDate = o.EndDate
+                    }).ToList();
 
-            return result;
+                    return result;
+                });
         }
+
     }
 }
