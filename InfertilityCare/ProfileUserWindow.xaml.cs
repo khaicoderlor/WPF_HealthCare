@@ -58,11 +58,11 @@ namespace InfertilityCare
             try
             {
                 _patientService.Update(_currentPatient);
-                MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Update successfull!", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Exception: {ex.Message}", "Exceptions", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
