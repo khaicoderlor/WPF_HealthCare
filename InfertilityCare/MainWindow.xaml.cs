@@ -61,7 +61,7 @@ namespace InfertilityCare
                 _authPolicy = new AuthorizationPolicy();
                 _context = new AppDbContext();
                 _patientRepository = new PatientRepository();
-                _orderService = new OrderService(new OrderRepository(_context));
+                _orderService = new OrderService(new OrderRepository());
             }
             catch (Exception ex)
             {
@@ -86,12 +86,12 @@ namespace InfertilityCare
             {
                 if (_currentPatient != null)
                 {
-                    // WelcomeText.Text = $"Xin chào, {_currentPatient.FullName}";
+                    WelcomeText.Text = $"Xin chào, {_currentPatient.FullName}";
                     this.Title = $"InfertilityCare - Xin chào, {_currentPatient.FullName}";
                 }
                 else
                 {
-                    // WelcomeText.Text = $"Xin chào, {_currentUser.Email}";
+                    WelcomeText.Text = $"Xin chào, {_currentUser.Email}";
                     this.Title = $"InfertilityCare - Xin chào, {_currentUser.Email}";
                 }
             }
@@ -121,15 +121,14 @@ namespace InfertilityCare
         {
             try
             {
-                // TODO: Implement when XAML UI elements are ready
-                // IUIDescription.Text = "Phương pháp đưa tinh trùng đã được xử lý trực tiếp vào buồng tử cung để tăng khả năng thụ thai";
+                IUIDescription.Text = "Phương pháp hỗ trợ sinh sản bằng cách đưa tinh trùng đã được xử lý trực tiếp vào buồng tử cung để tăng khả năng thụ thai";
 
                 // Add IUI steps
-                // IUIStepsPanel.Children.Clear();
-                // AddServiceStep(IUIStepsPanel, 1, "Kích thích buồng trứng", "Sử dụng thuốc hormone để kích thích buồng trứng sản xuất nhiều trứng hơn", 5000000);
-                // AddServiceStep(IUIStepsPanel, 2, "Theo dõi nang trứng", "Siêu âm và xét nghiệm hormone để theo dõi sự phát triển của nang trứng", 1000000);
-                // AddServiceStep(IUIStepsPanel, 3, "Tiêm thuốc kích thích rụng trứng", "Tiêm HCG để kích thích quá trình rụng trứng", 500000);
-                // AddServiceStep(IUIStepsPanel, 4, "Thụ tinh nhân tạo", "Đưa tinh trùng đã được xử lý vào buồng tử cung", 8000000);
+                IUIStepsPanel.Children.Clear();
+                AddServiceStep(IUIStepsPanel, 1, "Kích thích buồng trứng", "Sử dụng thuốc hormone để kích thích buồng trứng sản xuất nhiều trứng hơn", 5000000);
+                AddServiceStep(IUIStepsPanel, 2, "Theo dõi nang trứng", "Siêu âm và xét nghiệm hormone để theo dõi sự phát triển của nang trứng", 1000000);
+                AddServiceStep(IUIStepsPanel, 3, "Tiêm thuốc kích thích rụng trứng", "Tiêm HCG để kích thích quá trình rụng trứng", 500000);
+                AddServiceStep(IUIStepsPanel, 4, "Thụ tinh nhân tạo", "Đưa tinh trùng đã được xử lý vào buồng tử cung", 8000000);
 
                 System.Diagnostics.Debug.WriteLine("IUI Service Info loaded successfully");
             }
@@ -143,16 +142,15 @@ namespace InfertilityCare
         {
             try
             {
-                // TODO: Implement when XAML UI elements are ready
-                // IVFDescription.Text = "Phương pháp kết hợp trứng và tinh trùng ngoài cơ thể, sau đó chuyển phôi vào tử cung";
+                IVFDescription.Text = "Phương pháp hỗ trợ sinh sản bằng cách kết hợp trứng và tinh trùng ngoài cơ thể, sau đó chuyển phôi vào tử cung";
 
                 // Add IVF steps
-                // IVFStepsPanel.Children.Clear();
-                // AddServiceStep(IVFStepsPanel, 1, "Kích thích buồng trứng", "Sử dụng thuốc hormone để kích thích buồng trứng sản xuất nhiều trứng", 10000000);
-                // AddServiceStep(IVFStepsPanel, 2, "Theo dõi nang trứng", "Siêu âm và xét nghiệm hormone để theo dõi sự phát triển của nang trứng", 2000000);
-                // AddServiceStep(IVFStepsPanel, 3, "Thu trứng", "Thủ thuật lấy trứng từ buồng trứng bằng kim hút", 15000000);
-                // AddServiceStep(IVFStepsPanel, 4, "Thụ tinh tạo phôi", "Kết hợp trứng và tinh trùng trong phòng thí nghiệm để tạo phôi", 20000000);
-                // AddServiceStep(IVFStepsPanel, 5, "Chuyển phôi", "Đưa phôi đã phát triển vào buồng tử cung", 10000000);
+                IVFStepsPanel.Children.Clear();
+                AddServiceStep(IVFStepsPanel, 1, "Kích thích buồng trứng", "Sử dụng thuốc hormone để kích thích buồng trứng sản xuất nhiều trứng", 10000000);
+                AddServiceStep(IVFStepsPanel, 2, "Theo dõi nang trứng", "Siêu âm và xét nghiệm hormone để theo dõi sự phát triển của nang trứng", 2000000);
+                AddServiceStep(IVFStepsPanel, 3, "Thu trứng", "Thủ thuật lấy trứng từ buồng trứng bằng kim hút", 15000000);
+                AddServiceStep(IVFStepsPanel, 4, "Thụ tinh tạo phôi", "Kết hợp trứng và tinh trùng trong phòng thí nghiệm để tạo phôi", 20000000);
+                AddServiceStep(IVFStepsPanel, 5, "Chuyển phôi", "Đưa phôi đã phát triển vào buồng tử cung", 10000000);
 
                 System.Diagnostics.Debug.WriteLine("IVF Service Info loaded successfully");
             }

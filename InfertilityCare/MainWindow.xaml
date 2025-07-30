@@ -162,7 +162,7 @@
                 Margin="30">
             <StackPanel>
                 <!-- Title -->
-                <TextBlock Text="PHÁC ĐỒ ĐIỀU TRỊ VÔ SINH"
+                <TextBlock Text="PHÁC ĐỒ ĐIỀU TRỊ HIẾM MUỘN"
                            Style="{StaticResource HeaderStyle}"
                            Margin="0,20,0,5"/>
 
@@ -180,12 +180,12 @@
                     <Border Grid.Column="0"
                             Style="{StaticResource ServiceCardStyle}">
                         <StackPanel>
-                            <TextBlock Text="IUI - Thụ tinh nhân tạo"
+                            <TextBlock Text="IUI - Hỗ trợ thụ thai"
                                        Style="{StaticResource ServiceTitleStyle}"
                                        Foreground="#FF3498DB"/>
 
                             <TextBlock x:Name="IUIDescription"
-                                       Text="Phương pháp đưa tinh trùng đã được xử lý trực tiếp vào buồng tử cung"
+                                       Text="Phương pháp hỗ trợ sinh sản bằng cách đưa tinh trùng đã được xử lý trực tiếp vào buồng tử cung"
                                        Style="{StaticResource ServiceDescStyle}"/>
 
                             <TextBlock Text="Các bước điều trị:"
@@ -222,12 +222,12 @@
                     <Border Grid.Column="1"
                             Style="{StaticResource ServiceCardStyle}">
                         <StackPanel>
-                            <TextBlock Text="IVF - Thụ tinh trong ống nghiệm"
+                            <TextBlock Text="IVF - Hỗ trợ sinh sản"
                                        Style="{StaticResource ServiceTitleStyle}"
                                        Foreground="#FFE74C3C"/>
 
                             <TextBlock x:Name="IVFDescription"
-                                       Text="Phương pháp kết hợp trứng và tinh trùng ngoài cơ thể, sau đó chuyển phôi vào tử cung"
+                                       Text="Phương pháp hỗ trợ sinh sản bằng cách kết hợp trứng và tinh trùng ngoài cơ thể, sau đó chuyển phôi vào tử cung"
                                        Style="{StaticResource ServiceDescStyle}"/>
 
                             <TextBlock Text="Các bước điều trị:"
