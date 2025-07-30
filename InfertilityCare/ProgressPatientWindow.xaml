@@ -1,0 +1,26 @@
+﻿<Window x:Class="InfertilityCare.ProgressPatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tiến độ điều trị"
+        Height="450" Width="700"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Tiến độ điều trị" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+            <DataGrid x:Name="dgProgress"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      HeadersVisibility="Column"
+                      AlternatingRowBackground="LightGray"
+                      GridLinesVisibility="None"
+                      MinHeight="300">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên bước" Binding="{Binding StepName}" Width="2*"/>
+                    <DataGridTextColumn Header="Mô tả" Binding="{Binding Description}" Width="3*"/>
+                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="1.5*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

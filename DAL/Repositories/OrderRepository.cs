@@ -19,11 +19,16 @@ namespace DAL.Repositories
             _context = new AppDbContext();
         }
 
-        public List<Order> GetOrdersByPatientIdAsync(Guid patientId)
+        public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders
                 .Where(o => o.PatientId == patientId)
                 .ToList();
+        }
+
+        public Order GetOrderWithSteps(int orderId)
+        {
+            return _context.Orders.FirstOrDefault(o => o.Id == orderId);
         }
 
         public Order? UpdateStatusById(int id, OrderStatus status)
