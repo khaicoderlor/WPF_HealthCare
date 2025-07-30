@@ -1,4 +1,5 @@
-﻿using BLL.Services;
+﻿using BLL.Polices;
+using BLL.Services;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -23,20 +24,43 @@ namespace InfertilityCare
     {
         private readonly ApplicationUserService _userService;
 
+        private readonly AuthorizationPolicy _polices;
+
         public LoginWindow()
         {
             InitializeComponent();
+            _userService = new ApplicationUserService();
+            _polices = new AuthorizationPolicy();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
-            } 
+                var authentication = _userService.Authenticate(txtEmail.Text, txtPassword.Password);
+                if(authentication is not null)
+                {
+                    if (_polices.NoPolices(authentication))
+                    {
+                        MessageBox.Show($"You are not authorized to access this application!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    else
+                    {
+                        MainWindow home = new MainWindow(authentication);
+                        home.Show();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Invalid email or password!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
     }
 }

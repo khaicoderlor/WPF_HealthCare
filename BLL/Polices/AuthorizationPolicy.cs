@@ -14,14 +14,57 @@ namespace BLL.Polices
 
         private readonly DoctorRepository _doctorRepository;
 
+        private readonly PatientRepository _patientRepository;  
+
         public AuthorizationPolicy()
         {
-            _applicationUserService = new ApplicationUserService();
+            _doctorRepository = new DoctorRepository();
+            _patientRepository = new PatientRepository();
+        }
+
+        public bool IsDoctor(ApplicationUser user) 
+        {
+            return _doctorRepository.FindById(user.Id) != null;
+        }   
+
+        public bool IsPatient(ApplicationUser user) 
+        {
+            return _patientRepository.FindById(user.Id) != null;
         }
 
         public bool CreatePolicy(ApplicationUser user) 
         {
-            
+            return IsDoctor(user);
+        }
+
+        public bool ReadPolicy(ApplicationUser user) 
+        {
+            return IsDoctor(user) || IsPatient(user);
+        }
+
+        public bool UpdatePolicy(ApplicationUser user) 
+        {
+            return IsDoctor(user) || IsPatient(user);
+        }
+        
+        public bool CreateBookingPolicy(ApplicationUser user) 
+        {
+            return IsPatient(user);
+        }
+
+        public bool UpdateProfilePolicy(ApplicationUser user) 
+        {
+            return IsDoctor(user) || IsPatient(user);
+        }
+
+        public bool DeletePolicy(ApplicationUser user) 
+        {
+            return IsDoctor(user);
+        }
+
+        public bool NoPolices(ApplicationUser user) 
+        {
+            return !IsDoctor(user) && !IsPatient(user);
         }
 
     }
