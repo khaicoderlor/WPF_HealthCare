@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Context;
+using DAL.Entities;
 
 namespace DAL.Repositories
 {
@@ -25,6 +26,13 @@ namespace DAL.Repositories
             return _context.EmbryoGaineds
                 .Where(e => e.OrderId == orderId && e.IsFrozen == true)
                 .Count();
+        }
+
+        public EmbryoGained EmbryoGained(EmbryoGained embryoGained)
+        {
+            _context.EmbryoGaineds.Add(embryoGained);
+            _context.SaveChanges();
+            return embryoGained;
         }
     }
 }
