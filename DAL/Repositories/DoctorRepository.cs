@@ -23,5 +23,10 @@ namespace DAL.Repositories
                 .FirstOrDefault(doctor => doctor.Id == id);
         }
 
+        public List<Doctor> GetAllDoctors()
+        {
+            return _context.Doctors
+                .ToList();
+        }
     }
 }

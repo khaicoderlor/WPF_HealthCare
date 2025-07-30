@@ -90,7 +90,7 @@ namespace BLL.Services
                 OrderStep = orderStep,
                 PatientId = patientId,
                 DoctorId = doctorId,
-                AppointmentDate = appointmentDateTime,
+                //AppointmentDate = appointmentDateTime,
                 Status = AppointmentStatus.Scheduled,
                 ExtraFee = 0
             };

@@ -234,8 +234,7 @@
                         Grid.Row="0" 
                         Margin="152,8,0,8" 
                         DisplayMemberPath="Name" 
-                        SelectedValuePath="Id" 
-                        SelectionChanged="cbService_SelectionChanged" Grid.ColumnSpan="3"/>
+                        SelectedValuePath="Id"  Grid.ColumnSpan="3"/>
 
                 <!-- Doctor -->
                 <TextBlock Text="Doctor:" 
@@ -262,8 +261,7 @@
                           Style="{StaticResource ModernDatePicker}"
                           Width="250" 
                           Grid.Row="1" 
-                          Margin="152,56,0,9" 
-                          SelectedDateChanged="dpDate_SelectedDateChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+                          Margin="152,56,0,9"  Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
                 <!-- Time slot -->
 

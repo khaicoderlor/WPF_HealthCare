@@ -36,5 +36,10 @@ namespace BLL.Services
         {
             _repository.Add(patient);
         }
+        public Guid GetPatientIdbyUserId(Guid userId)
+        {
+            var patient = _repository.GetByUserId(userId);
+            return patient.Id;
+        }
     }
 }
