@@ -1,8 +1,180 @@
 ﻿<Window x:Class="YourNamespace.BookingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Treatment Booking" Height="450" Width="500"
-        WindowStartupLocation="CenterScreen" Background="#F8FAFF">
+        Title="Treatment Booking" 
+        Height="450" 
+        Width="500"
+        WindowStartupLocation="CenterScreen" 
+        Background="#F8FAFF">
+
+    <Window.Resources>
+        <!-- Modern TextBlock Style -->
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="#374151"/>
+        </Style>
+
+        <!-- Modern ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0" 
+                                                Margin="{TemplateBinding Padding}"
+                                                VerticalAlignment="Center"
+                                                Content="{TemplateBinding SelectionBoxItem}"/>
+                                <TextBlock Grid.Column="1" 
+                                         Text="▼" 
+                                         FontSize="10" 
+                                         Foreground="#6B7280"
+                                         VerticalAlignment="Center"
+                                         Margin="0,0,10,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#3B82F6"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#3B82F6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern DatePicker Style -->
+        <Style x:Key="ModernDatePicker" TargetType="DatePicker">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DatePicker">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <DatePickerTextBox x:Name="PART_TextBox" 
+                                                 Grid.Column="0"
+                                                 Margin="{TemplateBinding Padding}"
+                                                 VerticalAlignment="Center"
+                                                 Background="Transparent"
+                                                 BorderThickness="0"/>
+                                <Button x:Name="PART_Button" 
+                                        Grid.Column="1"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Margin="0,0,8,0">
+                                    <TextBlock Text="📅" FontSize="14" Foreground="#6B7280"/>
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#3B82F6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#3B82F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                Padding="20,10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2563EB"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1D4ED8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern CheckBox Style -->
+        <Style x:Key="ModernCheckBox" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="CheckBorder"
+                                    Width="18" Height="18"
+                                    Background="White"
+                                    BorderBrush="#D1D5DB"
+                                    BorderThickness="1"
+                                    CornerRadius="3"
+                                    Margin="0,0,8,0">
+                                <TextBlock x:Name="CheckMark" 
+                                         Text="✓" 
+                                         FontSize="12" 
+                                         Foreground="White"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Visibility="Collapsed"/>
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckBorder" Property="Background" Value="#3B82F6"/>
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="#3B82F6"/>
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="#3B82F6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -10,42 +182,115 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Book Treatment Appointment" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <!-- Enhanced Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <Border Background="#3B82F6" 
+                    CornerRadius="30" 
+                    Width="60" 
+                    Height="60" 
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,12">
+                <TextBlock Text="📅" 
+                         FontSize="24" 
+                         HorizontalAlignment="Center" 
+                         VerticalAlignment="Center"/>
+            </Border>
+        </StackPanel>
 
-        <Grid Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="170"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <!-- Enhanced Form with Card Background -->
+        <Border 
+                Background="White" 
+                CornerRadius="12" 
+                Padding="24"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1" Margin="0,84,0,0" Grid.RowSpan="2">
+            <Border.Effect>
+                <DropShadowEffect Color="#000000" Direction="270" ShadowDepth="2" Opacity="0.08" BlurRadius="12"/>
+            </Border.Effect>
 
-            <!-- Treatment protocol -->
-            <TextBlock Text="Treatment protocol:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10"/>
-            <ComboBox x:Name="cbService" Width="250" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="cbService_SelectionChanged"/>
+            <Grid VerticalAlignment="Center" Height="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="49*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Doctor -->
-            <TextBlock Text="Doctor:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,10,10"/>
-            <ComboBox x:Name="cbDoctor" Width="250" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" DisplayMemberPath="FullName" SelectedValuePath="Id"/>
+                <!-- Treatment protocol -->
+                <TextBlock Text="Treatment service:" 
+                         Style="{StaticResource LabelStyle}"
+                         VerticalAlignment="Center" 
+                         Grid.Column="0" 
+                         Margin="0,0,10,0"/>
+                <ComboBox x:Name="cbService" 
+                        Style="{StaticResource ModernComboBox}"
+                        Width="250" 
+                        Grid.Row="0" 
+                        Margin="152,8,0,8" 
+                        DisplayMemberPath="Name" 
+                        SelectedValuePath="Id" 
+                        SelectionChanged="cbService_SelectionChanged" Grid.ColumnSpan="3"/>
 
-            <!-- Date -->
-            <TextBlock Text="Date:" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,10,10"/>
-            <DatePicker x:Name="dpDate" Width="250" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" SelectedDateChanged="dpDate_SelectedDateChanged"/>
+                <!-- Doctor -->
+                <TextBlock Text="Doctor:" 
+                         Style="{StaticResource LabelStyle}"
+                         VerticalAlignment="Top" 
+                         Grid.Row="1" 
+                         Grid.Column="0" 
+                         Margin="0,16,10,0"/>
+                <ComboBox x:Name="cbDoctor" 
+                        Style="{StaticResource ModernComboBox}" 
+                        Grid.Row="1" 
+                        Margin="152,0,0,15" 
+                        DisplayMemberPath="FullName" 
+                        SelectedValuePath="Id" Grid.ColumnSpan="3"/>
 
-            <!-- Time slot -->
-            <TextBlock Text="Time slot:" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="0,0,10,10"/>
-            <ComboBox x:Name="cbSlot" Width="250" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10"/>
+                <!-- Date -->
+                <TextBlock Text="First appointment date:" 
+                         Style="{StaticResource LabelStyle}"
+                         VerticalAlignment="Top" 
+                         Grid.Row="2" 
+                         Grid.Column="0" 
+                         Margin="0,2,10,0"/>
+                <DatePicker x:Name="dpDate" 
+                          Style="{StaticResource ModernDatePicker}"
+                          Width="250" 
+                          Grid.Row="1" 
+                          Margin="152,56,0,9" 
+                          SelectedDateChanged="dpDate_SelectedDateChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
-            <!-- Embryo freezing (IVF only) -->
-           
-            <CheckBox x:Name="chkFrozen" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" Visibility="Collapsed"/>
-        </Grid>
+                <!-- Time slot -->
 
-        <Button Content="Book Appointment" Grid.Row="2" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,24,0,0" Click="BtnBooking_Click"/>
+                <!-- Embryo freezing (IVF only) -->
+                <CheckBox x:Name="chkFrozen" 
+                        Style="{StaticResource ModernCheckBox}"
+                        Grid.Row="4" 
+                        Grid.Column="1" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left" 
+                        Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="❄️" FontSize="16" Margin="0,0,6,0"/>
+                        <TextBlock Text="Include embryo freezing service"/>
+                    </StackPanel>
+                </CheckBox>
+            </Grid>
+        </Border>
+
+        <!-- Enhanced Button -->
+        <Button Content="📅 Booking" 
+                Style="{StaticResource PrimaryButton}"
+                Grid.Row="2" 
+                Width="200" 
+                Height="45" 
+                HorizontalAlignment="Center" 
+                Margin="0,24,0,0" 
+                Click="BtnBooking_Click"/>
     </Grid>
 </Window>
