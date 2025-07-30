@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Context;
+using DAL.Entities;
 
 namespace DAL.Repositories
 {
@@ -14,6 +15,14 @@ namespace DAL.Repositories
         {
             _context = new AppDbContext();
         }
+
+        public EggGained AddEggGained(EggGained eggGained)
+        {
+            _context.EggGaineds.Add(eggGained);
+            _context.SaveChanges();
+            return eggGained;
+        }
+
         public int GetEggGainedsByOrderId(int orderId)
         {
             return _context.EggGaineds
