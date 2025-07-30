@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using DAL.Entities;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,12 @@ namespace InfertilityCare
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public ApplicationUser _authentication { get; set; }
+
+        public MainWindow(ApplicationUser authentication)
         {
             InitializeComponent();
+            _authentication = authentication;
         }
     }
 }

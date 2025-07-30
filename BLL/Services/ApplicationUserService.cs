@@ -19,6 +19,11 @@ namespace BLL.Services
 
         public ApplicationUser? Authenticate(string email, string password)
         {
+            if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("Email and password cannot be null or empty.");
+            }
+
             return _applicationUserRepository.LoginWithCredentials(email, password);
         }
 

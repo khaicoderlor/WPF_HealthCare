@@ -1,4 +1,5 @@
 ﻿using DAL.Context;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,12 @@ namespace DAL.Repositories
         public DoctorRepository()
         {
             _context = new AppDbContext();
+        }
+
+        public Doctor? FindById(Guid id)
+        {
+            return _context.Doctors
+                .FirstOrDefault(doctor => doctor.Id == id);
         }
 
     }
