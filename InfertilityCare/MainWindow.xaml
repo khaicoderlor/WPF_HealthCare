@@ -150,9 +150,9 @@
 
                 <Button x:Name="BookingButton"
                         Grid.Column="2"
-                        Content="Đặt lịch khám"
+                        Content="Booking"
                         Style="{StaticResource PrimaryButton}"
-                        Click="BookingButton_Click"/>
+                       />
             </Grid>
         </Border>
 
@@ -298,23 +298,19 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button x:Name="ProfileButton"
-                        Content="Hồ sơ cá nhân"
-                        Style="{StaticResource NavigationButton}"
-                        Click="ProfileButton_Click"/>
+                        Content="My Profile"
+                        Style="{StaticResource NavigationButton}" Click="ProfileButton_Click"
+                       />
                 <Button x:Name="MyOrdersButton"
-                        Content="Đơn hàng của tôi"
-                        Style="{StaticResource NavigationButton}"
-                        Click="MyOrdersButton_Click"/>
-                <Button x:Name="ProgressButton"
-                        Content="Theo dõi tiến trình"
-                        Style="{StaticResource NavigationButton}"
-                        Click="ProgressButton_Click"/>
+                        Content="My Orders"
+                        Style="{StaticResource NavigationButton}" Click="MyOrdersButton_Click"
+                        />
                 <Button x:Name="LogoutButton"
-                        Content="Đăng xuất"
+                        Content="Logout"
                         Style="{StaticResource NavigationButton}"
                         Background="#FFE74C3C"
                         Foreground="White"
-                        Click="LogoutButton_Click"/>
+                        />
             </StackPanel>
         </Border>
     </Grid>

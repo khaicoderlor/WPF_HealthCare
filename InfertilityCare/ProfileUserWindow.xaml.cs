@@ -22,14 +22,18 @@ namespace InfertilityCare
     /// </summary>
     public partial class ProfileUserWindow : Window
     {
+        private readonly ApplicationUser _authentication;
+
         private readonly PatientService _patientService;
+
         private Patient? _currentPatient;
 
-        public ProfileUserWindow(Guid applicationUserId)
+        public ProfileUserWindow(ApplicationUser authentication)
         {
             InitializeComponent();
             _patientService = new PatientService();
-            LoadPatient(applicationUserId);
+            _authentication = authentication;
+            LoadPatient(_authentication.Id);
         }
 
         private void LoadPatient(Guid userId)

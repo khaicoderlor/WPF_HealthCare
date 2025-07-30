@@ -235,7 +235,7 @@
                         Margin="152,8,0,8" 
                         DisplayMemberPath="Name" 
                         SelectedValuePath="Id" 
-                        SelectionChanged="cbService_SelectionChanged" Grid.ColumnSpan="3"/>
+                        Grid.ColumnSpan="3"/>
 
                 <!-- Doctor -->
                 <TextBlock Text="Doctor:" 
@@ -263,7 +263,7 @@
                           Width="250" 
                           Grid.Row="1" 
                           Margin="152,56,0,9" 
-                          SelectedDateChanged="dpDate_SelectedDateChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+                          Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
                 <!-- Time slot -->
 

@@ -21,7 +21,7 @@ namespace DAL.Repositories
         public Patient? FindById(Guid id)
         {
             return _context.Patients
-                .FirstOrDefault(patient => patient.Id == id);
+                .FirstOrDefault(patient => patient.ApplicationUserId == id);
         }
 
         public Patient? GetByUserId(Guid applicationUserId)

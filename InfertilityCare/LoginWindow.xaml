@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:InfertilityCare"
         mc:Ignorable="d"
         Title="InfertilityCare - Login" 
-        Height="400" 
-        Width="350"
+        Height="450" 
+        Width="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="#FFF">
@@ -33,13 +33,13 @@
         </StackPanel>
 
         <!-- Login Form -->
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Height="203">
 
             <!-- Username/Email -->
             <!-- Username/Email -->
             <!-- Username/Email -->
             <Label Content="Email:" 
-                   FontWeight="SemiBold"
+                   FontWeight="SemiBold" Height="27"
                    />
             <TextBox x:Name="txtEmail"
                      Height="35"
