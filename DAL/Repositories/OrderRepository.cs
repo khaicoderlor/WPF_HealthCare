@@ -18,11 +18,11 @@ namespace DAL.Repositories
             _context = context;
         }
 
-        public Task<List<Order>> GetOrdersByPatientIdAsync(Guid patientId)
+        public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders
                 .Where(o => o.PatientId == patientId)
-                .ToListAsync();
+                .ToList();
         }
     }
 }

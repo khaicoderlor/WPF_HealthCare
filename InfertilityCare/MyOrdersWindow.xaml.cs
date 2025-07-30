@@ -34,24 +34,17 @@ namespace InfertilityCare
 
         private void MyOrdersWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            _orderService.GetOrdersForPatientAsync(_patientId)
-                .ContinueWith(task =>
-                {
-                    // Xử lý lỗi
-                    if (task.Exception != null)
-                    {
-                        // Dùng Dispatcher để show MessageBox vì đang ở thread khác
-                        Dispatcher.Invoke(() =>
-                            MessageBox.Show("Lỗi khi tải danh sách đơn khám: " + task.Exception.InnerException?.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error));
-                        return;
-                    }
-
-                    var orders = task.Result;
-
-                    // Cập nhật UI trên UI thread
-                    Dispatcher.Invoke(() => dgOrders.ItemsSource = orders);
-                });
+            try
+            {
+                var orders = _orderService.GetOrdersForPatient(_patientId); // ← hàm đồng bộ
+                dgOrders.ItemsSource = orders; // ← cập nhật UI ngay
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách đơn khám: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
 
         private void ViewDetails_Click(object sender, RoutedEventArgs e)

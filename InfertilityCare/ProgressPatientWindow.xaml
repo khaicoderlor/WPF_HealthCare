@@ -1,0 +1,34 @@
+﻿<Window x:Class="InfertilityCare.ProgressPatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tiến trình điều trị" Height="500" Width="700"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Tiến trình các bước điều trị"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#37474F"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+            <ItemsControl x:Name="stepsPanel">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="8"
+                                Margin="5"
+                                Padding="10"
+                                Background="{Binding StatusColor}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding StepName}" FontSize="16" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Description}" FontSize="14" Foreground="Gray"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</Window>
