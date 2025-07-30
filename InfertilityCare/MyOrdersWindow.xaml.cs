@@ -32,18 +32,27 @@ namespace InfertilityCare
             Loaded += MyOrdersWindow_Loaded;
         }
 
-        private async void MyOrdersWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MyOrdersWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var orders = await _orderService.GetOrdersForPatientAsync(_patientId);
-                dgOrders.ItemsSource = orders;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải danh sách đơn khám: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _orderService.GetOrdersForPatientAsync(_patientId)
+                .ContinueWith(task =>
+                {
+                    // Xử lý lỗi
+                    if (task.Exception != null)
+                    {
+                        // Dùng Dispatcher để show MessageBox vì đang ở thread khác
+                        Dispatcher.Invoke(() =>
+                            MessageBox.Show("Lỗi khi tải danh sách đơn khám: " + task.Exception.InnerException?.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error));
+                        return;
+                    }
+
+                    var orders = task.Result;
+
+                    // Cập nhật UI trên UI thread
+                    Dispatcher.Invoke(() => dgOrders.ItemsSource = orders);
+                });
         }
+
 
         private void ViewDetails_Click(object sender, RoutedEventArgs e)
         {

@@ -19,11 +19,9 @@ namespace DAL.Repositories
             _context = new AppDbContext();
         }
 
-        public async Task<List<Order>> GetOrdersByPatientIdAsync(Guid patientId)
+        public Task<List<Order>> GetOrdersByPatientIdAsync(Guid patientId)
         {
-            return await _context.Orders
-                .Include(o => o.Service)
-                .Include(o => o.Doctor)
+            return _context.Orders
                 .Where(o => o.PatientId == patientId)
                 .ToListAsync();
         }
