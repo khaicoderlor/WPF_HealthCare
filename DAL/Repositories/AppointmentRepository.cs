@@ -25,6 +25,17 @@ namespace DAL.Repositories
             return appointment;
         }
 
+        public Appointment? FindAppointmentById(string appointmentId)
+        {
+            return _appDbContext.Appointments
+                .FirstOrDefault(a => a.Id.ToString() == appointmentId);
+        }
+
+        public List<Appointment> GetAppointmentsByOrderStepId(int orderStepId)
+        {
+            return _appDbContext.Appointments.Where(x => x.OrderStepId == orderStepId).ToList();
+        }
+
         public void SaveChanges()
         {
             _appDbContext.SaveChanges();
