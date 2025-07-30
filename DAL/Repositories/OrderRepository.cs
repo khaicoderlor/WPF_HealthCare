@@ -26,6 +26,11 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public Order GetOrderWithSteps(int orderId)
+        {
+            return _context.Orders.FirstOrDefault(o => o.Id == orderId);
+        }
+
         public Order? UpdateStatusById(int id, OrderStatus status)
         {
             var order = _context.Orders

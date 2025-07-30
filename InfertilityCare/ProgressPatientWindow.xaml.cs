@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL.Services;
+using DAL.Context;
+using DAL.Dto;
+using DAL.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +23,31 @@ namespace InfertilityCare
     /// </summary>
     public partial class ProgressPatientWindow : Window
     {
-        public ProgressPatientWindow()
+        private readonly OrderService _orderService;
+        private readonly int _orderId;
+
+        public ProgressPatientWindow(int orderId, OrderService orderService)
         {
             InitializeComponent();
+            _orderId = orderId;
+            _orderService = orderService;
+
+            LoadProgress();
+        }
+
+        private void LoadProgress()
+        {
+            try
+            {
+                var progressSteps = _orderService.GetProgressByOrderId(_orderId);
+                dgProgress.ItemsSource = progressSteps;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải tiến độ điều trị: " + ex.Message);
+            }
         }
     }
+
+
 }

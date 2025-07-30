@@ -32,6 +32,36 @@ namespace BLL.Services
             }).ToList();
         }
 
+        public List<ServiceStepStatusViewModel> GetProgressByOrderId(int orderId)
+        {
+            var order = _orderRepository.GetOrderWithSteps(orderId);
+            if (order == null || order.Service == null) return new();
+
+            var serviceSteps = order.Service.Steps.OrderBy(s => s.StepOrder).ToList();
+
+
+            var orderSteps = order.Steps.ToList();
+
+            var result = new List<ServiceStepStatusViewModel>();
+
+            foreach (var step in serviceSteps)
+            {
+                var orderStep = orderSteps.FirstOrDefault(os => os.ServiceStepId == step.Id);
+
+                var status = orderStep != null
+                    ? orderStep.Status.ToString()
+                    : "InProgress"; // Default nếu chưa làm
+
+                result.Add(new ServiceStepStatusViewModel
+                {
+                    StepName = step.Name,
+                    Description = step.Description,
+                    Status = status
+                });
+            }
+
+            return result;
+        }
 
     }
 }
