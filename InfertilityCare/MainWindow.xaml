@@ -5,8 +5,317 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfertilityCare"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="InfertilityCare - HomePage"
+        Height="700"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF">
 
+    <Window.Resources>
+        <Style x:Key="HeaderStyle"
+                TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="24"/>
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+            <Setter Property="Foreground"
+                    Value="#FF2C3E50"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+            <Setter Property="Margin"
+                    Value="0,20,0,10"/>
+        </Style>
+
+        <Style x:Key="SubHeaderStyle"
+                TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="14"/>
+            <Setter Property="Foreground"
+                    Value="#FF7F8C8D"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+            <Setter Property="Margin"
+                    Value="0,0,0,20"/>
+        </Style>
+
+        <Style x:Key="ServiceCardStyle"
+                TargetType="Border">
+            <Setter Property="Background"
+                    Value="White"/>
+            <Setter Property="BorderBrush"
+                    Value="#FFBDC3C7"/>
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+            <Setter Property="Margin"
+                    Value="10"/>
+            <Setter Property="Padding"
+                    Value="20"/>
+        </Style>
+
+        <Style x:Key="PrimaryButton"
+                TargetType="Button">
+            <Setter Property="Background"
+                    Value="#FF3498DB"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="Padding"
+                    Value="20,10"/>
+            <Setter Property="FontSize"
+                    Value="14"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+        </Style>
+
+        <Style x:Key="NavigationButton"
+                TargetType="Button">
+            <Setter Property="Background"
+                    Value="#FFECF0F1"/>
+            <Setter Property="Foreground"
+                    Value="#FF2C3E50"/>
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+            <Setter Property="BorderBrush"
+                    Value="#FFBDC3C7"/>
+            <Setter Property="Padding"
+                    Value="15,8"/>
+            <Setter Property="Margin"
+                    Value="5"/>
+            <Setter Property="FontSize"
+                    Value="12"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+        </Style>
+
+        <Style x:Key="ServiceTitleStyle"
+                TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="18"/>
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+            <Setter Property="Margin"
+                    Value="0,0,0,15"/>
+        </Style>
+
+        <Style x:Key="ServiceDescStyle"
+                TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="14"/>
+            <Setter Property="Foreground"
+                    Value="#FF7F8C8D"/>
+            <Setter Property="TextWrapping"
+                    Value="Wrap"/>
+            <Setter Property="Margin"
+                    Value="0,0,0,15"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="#FF2C3E50"
+                Padding="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="InfertilityCare"
+                           FontSize="24"
+                        FontWeight="Bold"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="WelcomeText"
+                        Grid.Column="1"
+                           Text="Xin chào, [Tên bệnh nhân]"
+                           FontSize="16"
+                        Foreground="White"
+                           VerticalAlignment="Center"
+                           Margin="0,0,20,0"/>
+
+                <Button x:Name="BookingButton"
+                        Grid.Column="2"
+                        Content="Đặt lịch khám"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="BookingButton_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1"
+                VerticalScrollBarVisibility="Auto"
+                Margin="30">
+            <StackPanel>
+                <!-- Title -->
+                <TextBlock Text="PHÁC ĐỒ ĐIỀU TRỊ VÔ SINH"
+                           Style="{StaticResource HeaderStyle}"
+                           Margin="0,20,0,5"/>
+
+                <TextBlock Text="Chọn phương pháp điều trị phù hợp với tình trạng của bạn"
+                           Style="{StaticResource SubHeaderStyle}"/>
+
+                <!-- Services Grid -->
+                <Grid Margin="0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- IUI Service -->
+                    <Border Grid.Column="0"
+                            Style="{StaticResource ServiceCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="IUI - Thụ tinh nhân tạo"
+                                       Style="{StaticResource ServiceTitleStyle}"
+                                       Foreground="#FF3498DB"/>
+
+                            <TextBlock x:Name="IUIDescription"
+                                       Text="Phương pháp đưa tinh trùng đã được xử lý trực tiếp vào buồng tử cung"
+                                       Style="{StaticResource ServiceDescStyle}"/>
+
+                            <TextBlock Text="Các bước điều trị:"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,10"/>
+
+                            <StackPanel x:Name="IUIStepsPanel">
+                                <!-- IUI steps will be loaded here -->
+                            </StackPanel>
+
+                            <Border Background="#FFF8F0"
+                                    BorderBrush="#FFBDC3C7"
+                                    BorderThickness="1"
+                                    Padding="15"
+                                    Margin="0,15,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Chi phí ước tính: 15-25 triệu VNĐ"
+                                               FontWeight="SemiBold"
+                                               Foreground="#FF3498DB"
+                                               Margin="0,0,0,5"/>
+                                    <TextBlock Text="Thời gian: 2-3 tuần/chu kỳ"
+                                               FontSize="12"
+                                               Foreground="#FF7F8C8D"
+                                               Margin="0,0,0,3"/>
+                                    <TextBlock Text="Tỷ lệ thành công: 15-20%"
+                                               FontSize="12"
+                                               Foreground="#FF7F8C8D"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- IVF Service -->
+                    <Border Grid.Column="1"
+                            Style="{StaticResource ServiceCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="IVF - Thụ tinh trong ống nghiệm"
+                                       Style="{StaticResource ServiceTitleStyle}"
+                                       Foreground="#FFE74C3C"/>
+
+                            <TextBlock x:Name="IVFDescription"
+                                       Text="Phương pháp kết hợp trứng và tinh trùng ngoài cơ thể, sau đó chuyển phôi vào tử cung"
+                                       Style="{StaticResource ServiceDescStyle}"/>
+
+                            <TextBlock Text="Các bước điều trị:"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,10"/>
+
+                            <StackPanel x:Name="IVFStepsPanel">
+                                <!-- IVF steps will be loaded here -->
+                            </StackPanel>
+
+                            <Border Background="#FFF5F5"
+                                    BorderBrush="#FFBDC3C7"
+                                    BorderThickness="1"
+                                    Padding="15"
+                                    Margin="0,15,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Chi phí ước tính: 80-120 triệu VNĐ"
+                                               FontWeight="SemiBold"
+                                               Foreground="#FFE74C3C"
+                                               Margin="0,0,0,5"/>
+                                    <TextBlock Text="Thời gian: 4-6 tuần/chu kỳ"
+                                               FontSize="12"
+                                               Foreground="#FF7F8C8D"
+                                               Margin="0,0,0,3"/>
+                                    <TextBlock Text="Tỷ lệ thành công: 40-60%"
+                                               FontSize="12"
+                                               Foreground="#FF7F8C8D"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- Info Section -->
+                <Border Background="#FFF8F9FA"
+                        BorderBrush="#FFBDC3C7"
+                        BorderThickness="1"
+                        Margin="0,30,0,20"
+                        Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="Thông tin quan trọng"
+                                   FontSize="16"
+                                FontWeight="SemiBold"
+                                   Foreground="#FF2C3E50"
+                                Margin="0,0,0,10"/>
+                        <TextBlock Text="• Vui lòng tham khảo ý kiến bác sĩ để lựa chọn phác đồ phù hợp"
+                                   FontSize="14"
+                                Foreground="#FF7F8C8D"
+                                Margin="0,0,0,5"/>
+                        <TextBlock Text="• Mỗi trường hợp cụ thể sẽ có chi phí và thời gian điều trị khác nhau"
+                                   FontSize="14"
+                                Foreground="#FF7F8C8D"
+                                Margin="0,0,0,5"/>
+                        <TextBlock Text="• Hãy đặt lịch tư vấn để được hỗ trợ tốt nhất"
+                                   FontSize="14"
+                                Foreground="#FF7F8C8D"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Navigation -->
+        <Border Grid.Row="2"
+                Background="#FFECF0F1"
+                BorderBrush="#FFBDC3C7"
+                BorderThickness="0,1,0,0"
+                Padding="20">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button x:Name="ProfileButton"
+                        Content="Hồ sơ cá nhân"
+                        Style="{StaticResource NavigationButton}"
+                        Click="ProfileButton_Click"/>
+                <Button x:Name="MyOrdersButton"
+                        Content="Đơn hàng của tôi"
+                        Style="{StaticResource NavigationButton}"
+                        Click="MyOrdersButton_Click"/>
+                <Button x:Name="ProgressButton"
+                        Content="Theo dõi tiến trình"
+                        Style="{StaticResource NavigationButton}"
+                        Click="ProgressButton_Click"/>
+                <Button x:Name="LogoutButton"
+                        Content="Đăng xuất"
+                        Style="{StaticResource NavigationButton}"
+                        Background="#FFE74C3C"
+                        Foreground="White"
+                        Click="LogoutButton_Click"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

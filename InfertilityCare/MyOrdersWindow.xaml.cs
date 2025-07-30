@@ -62,7 +62,7 @@ namespace InfertilityCare
             if (!string.IsNullOrEmpty(orderId))
             {
                 // Chuyển sang trang chi tiết tiến trình
-                var progressWindow = new ProgressPatientWindow(int.Parse(orderId));
+                var progressWindow = new ReportProgressWindow();
                 progressWindow.ShowDialog();
             }
         }
