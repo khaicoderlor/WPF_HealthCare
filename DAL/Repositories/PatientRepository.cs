@@ -1,5 +1,6 @@
 ﻿using DAL.Context;
 using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,32 @@ namespace DAL.Repositories
         {
             return _context.Patients
                 .FirstOrDefault(patient => patient.Id == id);
+        }
+
+        public Patient? GetByUserId(Guid applicationUserId)
+        {
+            return _context.Patients
+                           .Include(p => p.ApplicationUser)
+                           .FirstOrDefault(p => p.ApplicationUserId == applicationUserId);
+        }
+
+        public Patient? GetById(Guid id)
+        {
+            return _context.Patients
+                           .Include(p => p.ApplicationUser)
+                           .FirstOrDefault(p => p.Id == id);
+        }
+
+        public void Update(Patient patient)
+        {
+            _context.Patients.Update(patient);
+            _context.SaveChanges();
+        }
+
+        public void Add(Patient patient)
+        {
+            _context.Patients.Add(patient);
+            _context.SaveChanges();
         }
     }
 }
