@@ -13,7 +13,7 @@
 
     <Window.Resources>
         <Style x:Key="HeaderStyle"
-                TargetType="TextBlock">
+               TargetType="TextBlock">
             <Setter Property="FontSize"
                     Value="24"/>
             <Setter Property="FontWeight"
@@ -27,7 +27,7 @@
         </Style>
 
         <Style x:Key="SubHeaderStyle"
-                TargetType="TextBlock">
+               TargetType="TextBlock">
             <Setter Property="FontSize"
                     Value="14"/>
             <Setter Property="Foreground"
@@ -39,7 +39,7 @@
         </Style>
 
         <Style x:Key="ServiceCardStyle"
-                TargetType="Border">
+               TargetType="Border">
             <Setter Property="Background"
                     Value="White"/>
             <Setter Property="BorderBrush"
@@ -53,7 +53,7 @@
         </Style>
 
         <Style x:Key="PrimaryButton"
-                TargetType="Button">
+               TargetType="Button">
             <Setter Property="Background"
                     Value="#FF3498DB"/>
             <Setter Property="Foreground"
@@ -71,7 +71,7 @@
         </Style>
 
         <Style x:Key="NavigationButton"
-                TargetType="Button">
+               TargetType="Button">
             <Setter Property="Background"
                     Value="#FFECF0F1"/>
             <Setter Property="Foreground"
@@ -91,7 +91,7 @@
         </Style>
 
         <Style x:Key="ServiceTitleStyle"
-                TargetType="TextBlock">
+               TargetType="TextBlock">
             <Setter Property="FontSize"
                     Value="18"/>
             <Setter Property="FontWeight"
@@ -103,7 +103,7 @@
         </Style>
 
         <Style x:Key="ServiceDescStyle"
-                TargetType="TextBlock">
+               TargetType="TextBlock">
             <Setter Property="FontSize"
                     Value="14"/>
             <Setter Property="Foreground"
@@ -119,6 +119,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -136,30 +137,29 @@
                 <TextBlock Grid.Column="0"
                            Text="InfertilityCare"
                            FontSize="24"
-                        FontWeight="Bold"
+                           FontWeight="Bold"
                            Foreground="White"
                            VerticalAlignment="Center"/>
 
                 <TextBlock x:Name="WelcomeText"
-                        Grid.Column="1"
+                           Grid.Column="1"
                            Text="Xin chào, [Tên bệnh nhân]"
                            FontSize="16"
-                        Foreground="White"
+                           Foreground="White"
                            VerticalAlignment="Center"
                            Margin="0,0,20,0"/>
 
                 <Button x:Name="BookingButton"
                         Grid.Column="2"
-                        Content="Đặt lịch khám"
-                        Style="{StaticResource PrimaryButton}"
-                        Click="BookingButton_Click"/>
+                        Content="Booking"
+                        Style="{StaticResource PrimaryButton}"/>
             </Grid>
         </Border>
 
         <!-- Main Content -->
         <ScrollViewer Grid.Row="1"
-                VerticalScrollBarVisibility="Auto"
-                Margin="30">
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="30">
             <StackPanel>
                 <!-- Title -->
                 <TextBlock Text="PHÁC ĐỒ ĐIỀU TRỊ HIẾM MUỘN"
@@ -270,20 +270,20 @@
                     <StackPanel>
                         <TextBlock Text="Thông tin quan trọng"
                                    FontSize="16"
-                                FontWeight="SemiBold"
+                                   FontWeight="SemiBold"
                                    Foreground="#FF2C3E50"
-                                Margin="0,0,0,10"/>
+                                   Margin="0,0,0,10"/>
                         <TextBlock Text="• Vui lòng tham khảo ý kiến bác sĩ để lựa chọn phác đồ phù hợp"
                                    FontSize="14"
-                                Foreground="#FF7F8C8D"
-                                Margin="0,0,0,5"/>
+                                   Foreground="#FF7F8C8D"
+                                   Margin="0,0,0,5"/>
                         <TextBlock Text="• Mỗi trường hợp cụ thể sẽ có chi phí và thời gian điều trị khác nhau"
                                    FontSize="14"
-                                Foreground="#FF7F8C8D"
-                                Margin="0,0,0,5"/>
+                                   Foreground="#FF7F8C8D"
+                                   Margin="0,0,0,5"/>
                         <TextBlock Text="• Hãy đặt lịch tư vấn để được hỗ trợ tốt nhất"
                                    FontSize="14"
-                                Foreground="#FF7F8C8D"/>
+                                   Foreground="#FF7F8C8D"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -298,24 +298,97 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button x:Name="ProfileButton"
-                        Content="Hồ sơ cá nhân"
+                        Content="My Profile"
                         Style="{StaticResource NavigationButton}"
                         Click="ProfileButton_Click"/>
                 <Button x:Name="MyOrdersButton"
-                        Content="Đơn hàng của tôi"
+                        Content="My Orders"
                         Style="{StaticResource NavigationButton}"
                         Click="MyOrdersButton_Click"/>
-                <Button x:Name="ProgressButton"
-                        Content="Theo dõi tiến trình"
-                        Style="{StaticResource NavigationButton}"
-                        Click="ProgressButton_Click"/>
                 <Button x:Name="LogoutButton"
-                        Content="Đăng xuất"
+                        Content="Logout"
                         Style="{StaticResource NavigationButton}"
                         Background="#FFE74C3C"
-                        Foreground="White"
-                        Click="LogoutButton_Click"/>
+                        Foreground="White"/>
             </StackPanel>
+        </Border>
+
+        <!-- Footer -->
+        <Border Grid.Row="3"
+                Background="#FF2C3E50"
+                Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Thông tin liên hệ -->
+                <StackPanel Grid.Column="0"
+                            HorizontalAlignment="Left">
+                    <TextBlock Text="THÔNG TIN LIÊN HỆ"
+                               FontWeight="Bold"
+                               FontSize="12"
+                               Foreground="White"
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="📍 123 Đường Hỗ Trợ Sinh Sản, Q.1, TP.HCM"
+                               FontSize="10"
+                               Foreground="#FFBDC3C7"
+                               Margin="0,2"/>
+                    <TextBlock Text="📞 Hotline: 1900-1234"
+                               FontSize="10"
+                               Foreground="#FFBDC3C7"
+                               Margin="0,2"/>
+                    <TextBlock Text="✉️ Email: info@infertilitycare.vn"
+                               FontSize="10"
+                               Foreground="#FFBDC3C7"
+                               Margin="0,2"/>
+                </StackPanel>
+
+                <!-- Giờ hoạt động -->
+                <StackPanel Grid.Column="1"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="GIỜ HOẠT ĐỘNG"
+                               FontWeight="Bold"
+                               FontSize="12"
+                               Foreground="White"
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="🕐 Thứ 2 - Thứ 6: 7:00 - 18:00"
+                               FontSize="10"
+                               Foreground="#FFBDC3C7"
+                               Margin="0,2"/>
+                    <TextBlock Text="🕐 Thứ 7: 8:00 - 16:00"
+                               FontSize="10"
+                               Foreground="#FFBDC3C7"
+                               Margin="0,2"/>
+                    <TextBlock Text="🕐 Chủ nhật: 8:00 - 12:00"
+                               FontSize="10"
+                               Foreground="#FFBDC3C7"
+                               Margin="0,2"/>
+                </StackPanel>
+
+                <!-- Bản quyền -->
+                <StackPanel Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="© 2025 InfertilityCare"
+                               FontSize="10"
+                               Foreground="White"
+                               HorizontalAlignment="Right"
+                               Margin="0,2"/>
+                    <TextBlock Text="Phát triển bởi Nhóm PRN231"
+                               FontSize="9"
+                               Foreground="#FFBDC3C7"
+                               HorizontalAlignment="Right"
+                               Margin="0,2"/>
+                    <TextBlock Text="Phiên bản 1.0.0"
+                               FontSize="9"
+                               Foreground="#FFBDC3C7"
+                               HorizontalAlignment="Right"
+                               Margin="0,2"/>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>

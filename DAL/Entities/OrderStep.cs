@@ -33,6 +33,8 @@ namespace DAL.Entities
 
         public string Description { get; set; } = string.Empty;
 
+        public bool IsPaid { get; set; } = false;
+
         public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }

@@ -20,7 +20,7 @@ namespace DAL.Repositories
         public Doctor? FindById(Guid id)
         {
             return _context.Doctors
-                .FirstOrDefault(doctor => doctor.Id == id);
+                .FirstOrDefault(doctor => doctor.ApplicationUserId == id);
         }
 
         public List<Doctor> GetAllDoctors()
