@@ -170,7 +170,8 @@ namespace InfertilityCare
                     System.Windows.Media.Color.FromRgb(189, 195, 199)),
                 BorderThickness = new Thickness(1),
                 Padding = new Thickness(10),
-                Margin = new Thickness(0, 3, 0, 0)
+                Margin = new Thickness(0, 3, 0, 0),
+                Cursor = System.Windows.Input.Cursors.Hand // Make it clickable
             };
 
             var stepPanel = new StackPanel();
@@ -212,30 +213,51 @@ namespace InfertilityCare
                 stepPanel.Children.Add(stepAmount);
             }
 
+            // Add click to view details
+            var clickHint = new TextBlock
+            {
+                Text = "👆 Click để xem chi tiết",
+                FontSize = 10,
+                FontStyle = FontStyles.Italic,
+                Foreground = new System.Windows.Media.SolidColorBrush(
+                    System.Windows.Media.Color.FromRgb(52, 152, 219)),
+                Margin = new Thickness(0, 5, 0, 0)
+            };
+            stepPanel.Children.Add(clickHint);
+
             stepBorder.Child = stepPanel;
+
+            // Add click event for step details
+            stepBorder.MouseLeftButtonUp += (sender, e) => ShowStepDetails(stepOrder, name, description, amount);
+
             panel.Children.Add(stepBorder);
+        }
+
+        private void ShowStepDetails(int stepOrder, string name, string description, decimal amount)
+        {
+            string detailMessage = $"CHI TIẾT BƯỚC {stepOrder}\n\n" +
+                                 $"Tên: {name}\n\n" +
+                                 $"Mô tả: {description}\n\n" +
+                                 $"Chi phí: {amount:N0} VNĐ\n\n" +
+                                 $"Trạng thái: Chưa thực hiện\n\n" +
+                                 $"Ghi chú: Cần hoàn thành bước trước và thanh toán để tiến hành bước này.";
+
+            MessageBox.Show(detailMessage, $"Chi tiết - Bước {stepOrder}",
+                          MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void BookingButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (_currentPatient != null)
-                {
-                    // TODO: Create BookingWindow when ready
-                    MessageBox.Show("Chức năng đặt lịch đang được phát triển bởi team Booking", "Thông báo",
-                                   MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    // Skip authorization check - allow all users to see booking message
-                    MessageBox.Show("Chức năng đặt lịch đang được phát triển bởi team Booking", "Thông báo",
-                                   MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                // Open BookingWindow - developed by team Booking (Minh Khải)
+                var bookingWindow = new BookingWindow();
+                bookingWindow.Show();
+                // Don't close MainWindow, let user navigate back
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi",
+                MessageBox.Show($"Lỗi khi mở BookingWindow: {ex.Message}", "Lỗi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -244,13 +266,14 @@ namespace InfertilityCare
         {
             try
             {
-                // Skip authorization check - allow all users to see profile message
-                MessageBox.Show("Chức năng hồ sơ cá nhân đang được phát triển bởi team Profile", "Thông báo",
-                               MessageBoxButton.OK, MessageBoxImage.Information);
+                // Open ProfileUserWindow - developed by team Profile (Thành)
+                var profileWindow = new ProfileUserWindow(_currentUser.Id);
+                profileWindow.Show();
+                // Don't close MainWindow, let user navigate back
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi",
+                MessageBox.Show($"Lỗi khi mở ProfileUserWindow: {ex.Message}", "Lỗi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -259,22 +282,24 @@ namespace InfertilityCare
         {
             try
             {
-                if (_currentPatient != null && _orderService != null)
+                // Open MyOrdersWindow - developed by team Orders (Thắng)
+                if (_orderService != null)
                 {
-                    var ordersWindow = new MyOrdersWindow(_orderService, _currentPatient.Id);
+                    // Use current user's ID if no patient record exists
+                    var patientId = _currentPatient?.Id ?? _currentUser.Id;
+                    var ordersWindow = new MyOrdersWindow(_orderService, patientId);
                     ordersWindow.Show();
                     this.Close();
                 }
                 else
                 {
-                    // Skip authorization check - show development message for all users
-                    MessageBox.Show("Chức năng đơn hàng đang được phát triển bởi team Orders", "Thông báo",
-                                   MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Không thể khởi tạo OrderService", "Lỗi",
+                                   MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi mở đơn hàng: {ex.Message}", "Lỗi",
+                MessageBox.Show($"Lỗi khi mở MyOrdersWindow: {ex.Message}", "Lỗi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -283,13 +308,23 @@ namespace InfertilityCare
         {
             try
             {
-                // Skip authorization check - allow all users to see progress message
-                MessageBox.Show("Chức năng theo dõi tiến trình đang được phát triển bởi team Progress", "Thông báo",
-                               MessageBoxButton.OK, MessageBoxImage.Information);
+                // Open ProgressPatientWindow - developed by team Progress (Thắng)
+                if (_orderService != null)
+                {
+                    // Use dummy orderId = 1 for testing, real implementation will use actual order
+                    var progressWindow = new ProgressPatientWindow(1, _orderService);
+                    progressWindow.Show();
+                    // Don't close MainWindow, let user navigate back
+                }
+                else
+                {
+                    MessageBox.Show("Không thể khởi tạo OrderService", "Lỗi",
+                                   MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi",
+                MessageBox.Show($"Lỗi khi mở ProgressPatientWindow: {ex.Message}", "Lỗi",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
