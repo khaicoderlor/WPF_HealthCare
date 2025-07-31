@@ -4,34 +4,35 @@
         Title="Gói điều trị của tôi" Height="550" Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#FAFAFA">
-    <Canvas>
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <!-- Tiêu đề -->
-            <TextBlock Text="My orders"
+        <!-- Tiêu đề -->
+        <TextBlock Text="My orders"
                    FontSize="24"
                    FontWeight="Bold"
                    Foreground="#37474F"
                    HorizontalAlignment="Left"
-                   Margin="357,0,0,20"/>
+                   Margin="0,0,0,10"/>
 
-            <!-- Bảng danh sách đơn khám -->
+        <!-- Scrollable DataGrid -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgOrders"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  IsReadOnly="True"
-                  AlternatingRowBackground="#E3F2FD"
-                  HeadersVisibility="Column"
-                  RowHeight="40"
-                  ColumnHeaderHeight="40"
-                  FontSize="14"
-                  BorderBrush="#B0BEC5"
-                  BorderThickness="1" Margin="10,0,-10,-370" Grid.Row="1" SelectionChanged="dgOrders_SelectionChanged">
-
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      AlternatingRowBackground="#E3F2FD"
+                      HeadersVisibility="Column"
+                      RowHeight="40"
+                      ColumnHeaderHeight="40"
+                      FontSize="14"
+                      BorderBrush="#B0BEC5"
+                      BorderThickness="1"
+                      SelectionChanged="dgOrders_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Order ID" Binding="{Binding Id}" Width="70"/>
                     <DataGridTextColumn Header="Service" Binding="{Binding Service.Name}" Width="70"/>
@@ -43,26 +44,30 @@
                     <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount}" Width="120"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </Grid>
+        </ScrollViewer>
 
-        <Label Content="Order ID:"
-               FontSize="16" FontWeight="SemiBold"
-               Canvas.Left="32" Canvas.Top="469"
-               Foreground="#37474F"/>
-        <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" VerticalAlignment="Center" Width="337" Canvas.Left="113" Canvas.Top="476" IsEnabled="False"/>
+        <!-- Form + Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0" VerticalAlignment="Center">
+            <Label Content="Order ID:"
+                   FontSize="16" FontWeight="SemiBold"
+                   Foreground="#37474F" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtOrderId"
+                     Width="337"
+                     Margin="10,0,30,0"
+                     IsEnabled="False" VerticalAlignment="Center"/>
 
-        <Button x:Name="btnViewProgress" Content="View Progress"
-                Width="120" Height="40"
-                Background="#42A5F5" Foreground="White"
-                FontSize="16" FontWeight="Bold"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                Canvas.Left="712" Canvas.Top="460" Click="btnViewProgress_Click" />
+            <Button x:Name="btnReport" Content="Report"
+                    Width="120" Height="40"
+                    Background="DarkGreen" Foreground="White"
+                    FontSize="16" FontWeight="Bold"
+                    Margin="0,0,10,0"
+                    Click="btnReport_Click"/>
 
-        <Button x:Name="btnReport" Content="Report"
-                Width="120" Height="40"
-                Background="DarkGreen" Foreground="White"
-                FontSize="16" FontWeight="Bold"
-                HorizontalAlignment="Left" VerticalAlignment="Center"
-                Canvas.Left="567" Canvas.Top="460" Click="btnReport_Click" />
-    </Canvas>
+            <Button x:Name="btnViewProgress" Content="View Progress"
+                    Width="120" Height="40"
+                    Background="#42A5F5" Foreground="White"
+                    FontSize="16" FontWeight="Bold"
+                    Click="btnViewProgress_Click"/>
+        </StackPanel>
+    </Grid>
 </Window>

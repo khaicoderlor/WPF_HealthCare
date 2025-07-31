@@ -64,6 +64,11 @@ namespace BLL.Services
             return result;
         }
 
+        public Order GetOrderById(int orderId)
+        {
+            return _orderRepository.FindOrderById(orderId);
+        }
+
         public List<Order> GetOrderByPatientId(Guid patientId)
         {
             return _orderRepository.GetOrdersByPatientId(patientId);

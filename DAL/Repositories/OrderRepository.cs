@@ -26,6 +26,13 @@ namespace DAL.Repositories
             return orderStep;
         }
 
+        public Order FindOrderById(int orderId)
+        {
+            return _context.Orders
+                .FirstOrDefault(o => o.Id == orderId) 
+                ?? throw new NullReferenceException($"Order with ID {orderId} not found.");
+        }
+
         public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders

@@ -37,6 +37,18 @@ namespace DAL.Repositories
             return orderStep;
         }
 
+        public OrderStep? MarkedPaidStep(int id)
+        {
+            var orderStep = FindOrderStepById(id);
+            if (orderStep == null)
+            {
+                throw new NullReferenceException($"OrderStep with ID {id} not found.");
+            }
+            orderStep.IsPaid = true;
+            _context.SaveChanges();
+            return orderStep;
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
