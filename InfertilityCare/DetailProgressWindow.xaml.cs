@@ -36,6 +36,8 @@ namespace InfertilityCare
             _eggService = new EggService();
             this.order = order;
             orderSteps = order.Steps.ToList();
+            dgOrderSteps.ItemsSource = orderStepRepository.FindAllStepByOrder(order.Id);
+            LoadEggGrade();
         }
 
         private void LoadEggGrade()
@@ -96,7 +98,7 @@ namespace InfertilityCare
             if(dgOrderSteps.SelectedItem is OrderStep step)
             {
                 AppointmentByStepOrderWindow window = new AppointmentByStepOrderWindow(step);
-                window.Show();
+                window.ShowDialog();
             }
         }
 

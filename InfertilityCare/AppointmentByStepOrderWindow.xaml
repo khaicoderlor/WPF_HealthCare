@@ -9,8 +9,8 @@
     <Grid>
         <DataGrid x:Name="dgAppointment" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="DoctorId" Binding="{Binding DoctorId}" Width="*"/>
-                <DataGridTextColumn Header="PatientId" Binding="{Binding PatientId}" Width="*"/>
+                <DataGridTextColumn Header="Doctor Name" Binding="{Binding Doctor.Name}" Width="*"/>
+                <DataGridTextColumn Header="Patient Name" Binding="{Binding Patient.Name}" Width="*"/>
                 <DataGridTextColumn Header="AppointmentDate" Binding="{Binding AppointmentDate}" Width="*"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
                 <DataGridTextColumn Header="ExtraFee" Binding="{Binding ExtraFee}" Width="*"/>

@@ -48,7 +48,7 @@ namespace InfertilityCare
                     }
                     else if (_polices.IsDoctor(authentication))
                     {
-                        MainDoctorWindow doctorWindow = new MainDoctorWindow();
+                        MyPatientsInsideDoctorWindow doctorWindow = new MyPatientsInsideDoctorWindow(authentication);
                         doctorWindow.Show();
                         this.Close();
                     }

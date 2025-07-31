@@ -31,6 +31,7 @@ namespace InfertilityCare
         public AddAppointmentWindow(OrderStep step, Order order)
         {
             InitializeComponent();
+            _appointmentService = new AppointmentService();
             this.step = step;
             this.order = order;
         }
@@ -39,21 +40,38 @@ namespace InfertilityCare
         {
             try
             {
+                if (!dpAppointmentDate.SelectedDate.HasValue)
+                {
+                    MessageBox.Show("Please select a valid appointment date.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                decimal extraFee = 0;
+                if (!string.IsNullOrWhiteSpace(txtExtraFee.Text) &&
+                    !decimal.TryParse(txtExtraFee.Text, out decimal outxtraFee))
+                {
+                    MessageBox.Show("Invalid extra fee!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var appointment = new Appointment
                 {
                     DoctorId = order.DoctorId,
                     PatientId = order.PatientId,
-                    AppointmentDate = DateOnly.FromDateTime(dpAppointmentDate.DisplayDate),
-                    ExtraFee = string.IsNullOrWhiteSpace(txtExtraFee.Text) ? 0 : decimal.Parse(txtExtraFee.Text),
+                    OrderStepId = step.Id,
+                    AppointmentDate = DateOnly.FromDateTime(dpAppointmentDate.SelectedDate.Value),
+                    ExtraFee = extraFee,
                     Status = AppointmentStatus.Scheduled
                 };
+
                 _appointmentService.AddingAppointmentToOrderStep(appointment);
+
                 MessageBox.Show("Added appointment successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
             }
-            catch(FormatException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid extra fee!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
             

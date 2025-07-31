@@ -26,8 +26,9 @@ namespace InfertilityCare
         public AppointmentByStepOrderWindow(OrderStep step)
         {
             InitializeComponent();
-            LoadAppointmentByStepOrder();
+            _appointmentService = new AppointmentService();
             this.step = step;
+            LoadAppointmentByStepOrder();
         }
         public void LoadAppointmentByStepOrder()
         {

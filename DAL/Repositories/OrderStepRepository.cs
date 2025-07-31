@@ -59,5 +59,10 @@ namespace DAL.Repositories
             return _context.OrderSteps.Where(x => x.OrderId == step.OrderId && x.ServiceStep.StepOrder == step.ServiceStep.StepOrder + 1).FirstOrDefault();
         }
 
+        public List<OrderStep> FindAllStepByOrder(int orderId)
+        {
+            return _context.OrderSteps.Where(x => x.OrderId == orderId).ToList();
+        }
+
     }
 }

@@ -23,6 +23,7 @@ namespace BLL.Services
 
         public Appointment? AddingAppointmentToOrderStep(Appointment appointment)
         {
+    
             var step = _orderStepRepository.FindOrderStepById(appointment.OrderStepId);
             step.TotalAmount += appointment.ExtraFee;
             _orderStepRepository.SaveChanges();

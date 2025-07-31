@@ -23,17 +23,25 @@ namespace InfertilityCare
     {
         private readonly OrderService _orderService;
 
-        private readonly Order order;
-        public MyPatientsInsideDoctorWindow(Order order)
+        private readonly DoctorService _doctorService;
+
+        private ApplicationUser authentication;
+
+        private Doctor doctor;
+
+        public MyPatientsInsideDoctorWindow(ApplicationUser authentication)
         {
             InitializeComponent();
             _orderService = new OrderService();
-            this.order = order;
+            _doctorService = new DoctorService();
+            this.authentication = authentication;
+            this.doctor = _doctorService.GetByUserId(authentication.Id);
+            dgOrders.ItemsSource = _orderService.GetOrderByDoctorId(doctor.Id);
         }
 
         private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgOrders.SelectedItem is DAL.Entities.Order selectedOrder)
+            if (dgOrders.SelectedItem is Order selectedOrder)
             {
                 txtOrderId.Text = selectedOrder.Id.ToString();
             }
@@ -41,7 +49,13 @@ namespace InfertilityCare
 
         private void btnViewDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dgOrders.SelectedItem is Order selectedOrder)
+            {
+                DetailProgressWindow window = new DetailProgressWindow(selectedOrder);
+                window.Show();
+              
+            }
+            
         }
     }
 }

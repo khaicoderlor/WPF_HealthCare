@@ -19,5 +19,10 @@ namespace BLL.Services
         {
             return _doctorRepository.GetAllDoctors();
         }
+
+        public Doctor? GetByUserId(Guid userId)
+        {
+            return _doctorRepository.FindByApplicationUser(userId);
+        }
     }
 }

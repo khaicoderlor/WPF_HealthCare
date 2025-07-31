@@ -33,6 +33,11 @@ namespace DAL.Repositories
                 ?? throw new NullReferenceException($"Order with ID {orderId} not found.");
         }
 
+        public List<Order> GetOrdersByDoctorId(Guid doctorId)
+        {
+            return _context.Orders.Where(x => x.DoctorId == doctorId).ToList();
+        }
+
         public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders

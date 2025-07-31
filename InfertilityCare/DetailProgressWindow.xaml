@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfertilityCare"
         mc:Ignorable="d"
-        Title="DetailProgressWindow" Height="600" Width="1000">
+        Title="DetailProgressWindow" Height="700" Width="1000">
     <Canvas>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <DataGrid x:Name="dgOrderSteps"
@@ -62,7 +62,7 @@
         <ComboBox x:Name="cbxEggGrade" Canvas.Left="650" Canvas.Top="316" HorizontalAlignment="Left" VerticalAlignment="Center" Width="108"/>
 
         <Label Content="Grade" Canvas.Left="603" Canvas.Top="314"/>
-        <ComboBox x:Name="" Canvas.Left="780" Canvas.Top="475" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.503,3.432"/>
+        <ComboBox x:Name="cbxEggInStock" Canvas.Left="780" Canvas.Top="475" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.503,3.432"/>
 
         <Label Content="" Canvas.Left="565" Canvas.Top="353"/>
         <ComboBox Canvas.Left="780" Canvas.Top="426" Width="108" RenderTransformOrigin="0.503,3.432" HorizontalAlignment="Left" VerticalAlignment="Top"/>

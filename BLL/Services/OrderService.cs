@@ -75,7 +75,7 @@ namespace BLL.Services
         }
         public List<Order> GetOrderByDoctorId(Guid doctorId)
         {
-            return _orderRepository.GetOrdersByPatientId(doctorId);
+            return _orderRepository.GetOrdersByDoctorId(doctorId);
         }
     }
 }

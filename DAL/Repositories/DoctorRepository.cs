@@ -17,6 +17,11 @@ namespace DAL.Repositories
             _context = new AppDbContext();
         }
 
+        public Doctor? FindByApplicationUser(Guid userId)
+        {
+            return _context.Doctors.Where(x => x.ApplicationUserId == userId).FirstOrDefault();
+        }
+
         public Doctor? FindById(Guid id)
         {
             return _context.Doctors
