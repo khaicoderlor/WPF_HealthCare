@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLL.Services;
+using DAL.Entities;
 
 namespace InfertilityCare
 {
@@ -20,16 +21,17 @@ namespace InfertilityCare
     /// </summary>
     public partial class AppointmentByStepOrderWindow : Window
     {
-        public int OrderStepId { get; set; }
+        public OrderStep step { get; set; }
         private readonly AppointmentService _appointmentService;
-        public AppointmentByStepOrderWindow()
+        public AppointmentByStepOrderWindow(OrderStep step)
         {
             InitializeComponent();
             LoadAppointmentByStepOrder();
+            this.step = step;
         }
         public void LoadAppointmentByStepOrder()
         {
-            dgAppointment.ItemsSource = _appointmentService.GetAppointmentsByOrderStepId(OrderStepId);
+            dgAppointment.ItemsSource = _appointmentService.GetAppointmentsByOrderStepId(step.Id);
         }
     }
 }

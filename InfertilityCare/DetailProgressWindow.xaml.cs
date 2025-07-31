@@ -113,12 +113,20 @@ namespace InfertilityCare
 
         private void btnAddAppointment_Click(object sender, RoutedEventArgs e)
         {
-
+            if(dgOrderSteps.SelectedItem is OrderStep step)
+            {
+                AddAppointmentWindow window = new AddAppointmentWindow(step, order);
+                window.ShowDialog();
+            }
         }
 
         private void btnDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            if(dgOrderSteps.SelectedItem is OrderStep step)
+            {
+                AppointmentByStepOrderWindow window = new AppointmentByStepOrderWindow(step);
+                window.Show();
+            }
         }
 
         private void dgOrderSteps_SelectionChanged(object sender, SelectionChangedEventArgs e)
