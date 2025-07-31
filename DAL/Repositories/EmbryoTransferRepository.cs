@@ -15,6 +15,14 @@ namespace DAL.Repositories
         {
             _context = new AppDbContext();
         }
+
+        public EmbryoTransfer AddEmbryoTransfer(EmbryoTransfer embryoTransfer)
+        {
+            _context.EmbryoTransfers.Add(embryoTransfer);
+            _context.SaveChanges();
+            return embryoTransfer;
+        }
+
         public List<EmbryoTransfer> GetEmbryoTransfersByOrderId(int orderId)
         {
             return _context.EmbryoTransfers

@@ -19,5 +19,9 @@ namespace BLL.Services
         {
             return _embryoTransferRepository.GetEmbryoTransfersByOrderId(orderId);
         }
+        public EmbryoTransfer AddEmbryoTranfer(EmbryoTransfer embryoTransfer)
+        {
+            return _embryoTransferRepository.AddEmbryoTransfer(embryoTransfer);
+        }
     }
 }
