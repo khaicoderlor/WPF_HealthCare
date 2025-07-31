@@ -23,11 +23,11 @@ namespace DAL.Repositories
             return eggGained;
         }
 
-        public int GetEggGainedsByOrderId(int orderId)
+        public List<EggGained> GetEggGainedsByOrderId(int orderId)
         {
             return _context.EggGaineds
                 .Where(e => e.OrderId == orderId)
-                .Count();
+                .ToList();
         }
         
     }

@@ -5,46 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InfertilityCare"
         mc:Ignorable="d"
-        Title="Report Progress" Height="300" Width="450"
+        Title="Report Progress" Height="700" Width="1000"
         WindowStartupLocation="CenterScreen"
         Background="#f7f9fc">
-    <Border Margin="20" Padding="20" Background="White" BorderBrush="#ccc" BorderThickness="1" CornerRadius="10" >
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Canvas>
+        <!-- Eggs Gained -->
+        <Label Content="Eggs Gained" Canvas.Left="43" Canvas.Top="13"/>
+        <ScrollViewer Canvas.Left="43" Canvas.Top="44" Height="140" Width="286" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgEggs"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              IsReadOnly="True"
+              AlternatingRowBackground="#E3F2FD"
+              HeadersVisibility="Column"
+              RowHeight="40"
+              ColumnHeaderHeight="40"
+              FontSize="14"
+              BorderBrush="#B0BEC5"
+              BorderThickness="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"/>
+                    <DataGridTextColumn Header="Grade" Binding="{Binding Grade}" Width="70"/>
+                    <DataGridTextColumn Header="Date Gained" Binding="{Binding DateGained}" Width="140"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <!-- Embryos Gained -->
+        <Label Content="Embryos Gained" Canvas.Left="43" Canvas.Top="201"/>
+        <ScrollViewer Canvas.Left="43" Canvas.Top="232" Height="140" Width="705" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgEmbryos"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              IsReadOnly="True"
+              AlternatingRowBackground="#E3F2FD"
+              HeadersVisibility="Column"
+              RowHeight="40"
+              ColumnHeaderHeight="40"
+              FontSize="14"
+              BorderBrush="#B0BEC5"
+              BorderThickness="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"/>
+                    <DataGridTextColumn Header="Grade" Binding="{Binding Grade}" Width="70"/>
+                    <DataGridTextColumn Header="Egg Grade" Binding="{Binding EggGained.Grade}" Width="140"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="140"/>
+                    <DataGridTextColumn Header="Frozen Storage" Binding="{Binding IsFrozen}" Width="140"/>
+                    <DataGridTextColumn Header="Date Gained" Binding="{Binding DateGained}" Width="140"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
 
-            <!-- Total of eggs -->
-            <Label Grid.Row="0" Grid.Column="0" Content="🟡 Total of eggs:" 
-                   VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,5"/>
-            <TextBlock x:Name="txtNumberOfEgg" Grid.Row="0" Grid.Column="1" 
-                       FontSize="14" VerticalAlignment="Center" Foreground="#2e6da4" Margin="10,5"/>
+        <!-- Embryos Transfer -->
+        <Label Content="Embryos Transfer" Canvas.Left="43" Canvas.Top="421"/>
+        <ScrollViewer Canvas.Left="43" Canvas.Top="452" Height="160" Width="476" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgEmbryosTransfer"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              IsReadOnly="True"
+              AlternatingRowBackground="#E3F2FD"
+              HeadersVisibility="Column"
+              RowHeight="40"
+              ColumnHeaderHeight="40"
+              FontSize="14"
+              BorderBrush="#B0BEC5"
+              BorderThickness="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="70"/>
+                    <DataGridTextColumn Header="Embyro Grade" Binding="{Binding EmbryoGained.Grade}" Width="120"/>
+                    <DataGridTextColumn Header="TransferDate" Binding="{Binding TransferDate}" Width="140"/>
+                    <DataGridTextColumn Header="Frozen" Binding="{Binding EmbryoGained.IsFrozen}" Width="140"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
 
-            <!-- Number of embryos -->
-            <Label Grid.Row="1" Grid.Column="0" Content="🧬 Number of embryos:" 
-                   VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,5"/>
-            <TextBlock x:Name="txtNumberEmbryo" Grid.Row="1" Grid.Column="1" 
-                       FontSize="14" VerticalAlignment="Center" Foreground="#2e6da4" Margin="10,5"/>
-
-            <!-- Number of embryos frozen -->
-            <Label Grid.Row="2" Grid.Column="0" Content="❄️ Frozen embryos:" 
-                   VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,5"/>
-            <TextBlock x:Name="txtNumberFrozenEmbryo" Grid.Row="2" Grid.Column="1" 
-                       FontSize="14" VerticalAlignment="Center" Foreground="#2e6da4" Margin="10,5"/>
-
-            <!-- Number of embryos transferred -->
-            <Label Grid.Row="3" Grid.Column="0" Content="🚚 Transferred embryos:" 
-                   VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="0,5"/>
-            <TextBlock x:Name="txtNumberTransferEmbryo" Grid.Row="3" Grid.Column="1" 
-                       FontSize="14" VerticalAlignment="Center" Foreground="#2e6da4" Margin="10,5"/>
-        </Grid>
-    </Border>
+    </Canvas>
 </Window>

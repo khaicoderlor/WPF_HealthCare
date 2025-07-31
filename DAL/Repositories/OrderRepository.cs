@@ -18,6 +18,14 @@ namespace DAL.Repositories
         {
             _context = new AppDbContext();
         }
+
+        public OrderStep? CreateOrderStep(OrderStep orderStep)
+        {
+            _context.OrderSteps.Add(orderStep);
+            _context.SaveChanges();
+            return orderStep;
+        }
+
         public List<Order> GetOrdersByPatientId(Guid patientId)
         {
             return _context.Orders

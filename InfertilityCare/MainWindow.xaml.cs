@@ -45,7 +45,15 @@ namespace InfertilityCare
 
         private void MyOrdersButton_Click(object sender, RoutedEventArgs e)
         {
+            MyOrdersWindow myOrdersWindow = new MyOrdersWindow(_authentication);
+            myOrdersWindow.ShowDialog();
 
+        }
+
+        private void BookingButton_Click(object sender, RoutedEventArgs e)
+        {
+            BookingWindow bookingWindow = new BookingWindow(_authentication);
+            bookingWindow.ShowDialog();
         }
     }
 }

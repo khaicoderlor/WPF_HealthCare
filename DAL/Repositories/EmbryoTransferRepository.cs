@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Context;
+using DAL.Entities;
 
 namespace DAL.Repositories
 {
@@ -14,11 +15,11 @@ namespace DAL.Repositories
         {
             _context = new AppDbContext();
         }
-        public int GetEmbryoTransfersByOrderId(int orderId)
+        public List<EmbryoTransfer> GetEmbryoTransfersByOrderId(int orderId)
         {
             return _context.EmbryoTransfers
                 .Where(et => et.OrderId == orderId)
-                .Count();
+                .ToList();
         } 
     }
 }

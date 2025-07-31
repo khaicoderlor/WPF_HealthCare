@@ -15,11 +15,11 @@ namespace DAL.Repositories
         {
             _context = new AppDbContext();
         }
-        public int GetEmbryoGainedsByOrderId(int orderId)
+        public List<EmbryoGained> GetEmbryoGainedsByOrderId(int orderId)
         {
             return _context.EmbryoGaineds
                 .Where(e => e.OrderId == orderId)
-                .Count();
+                .ToList();
         }
         public int GetEmbryoFrozenByOrderId(int orderId)
         {

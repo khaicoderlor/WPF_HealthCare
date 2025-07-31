@@ -23,6 +23,11 @@ namespace BLL.Services
             _orderRepository = new OrderRepository();
         }
 
+        public OrderStep? CreateOrderStep(OrderStep orderStep)
+        {
+           return _orderRepository.CreateOrderStep(orderStep);
+        }
+
         public OrderStep? GetById(int id)
         {
             return _stepRepository.FindOrderStepById(id);

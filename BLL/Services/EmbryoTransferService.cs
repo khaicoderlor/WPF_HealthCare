@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Entities;
 using DAL.Repositories;
 
 namespace BLL.Services
@@ -14,7 +15,7 @@ namespace BLL.Services
         {
             _embryoTransferRepository = new EmbryoTransferRepository();
         }
-        public int GetEmbryoTransfersByOrderId(int orderId)
+        public List<EmbryoTransfer> GetEmbryoTransfersByOrderId(int orderId)
         {
             return _embryoTransferRepository.GetEmbryoTransfersByOrderId(orderId);
         }

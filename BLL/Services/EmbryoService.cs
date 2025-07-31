@@ -15,7 +15,7 @@ namespace BLL.Services
         {
             _embryoRepository = new EmbryoRepository();
         }
-        public int GetEmbryoGainedsByOrderId(int orderId)
+        public List<EmbryoGained> GetEmbryoGainedsByOrderId(int orderId)
         {
             return _embryoRepository.GetEmbryoGainedsByOrderId(orderId);
         }

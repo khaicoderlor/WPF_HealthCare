@@ -15,7 +15,7 @@ namespace BLL.Services
         {
             _eggRepository = new EggRepository();
         }
-        public int GetEggGainedsByOrderId(int orderId)
+        public List<EggGained> GetEggGainedsByOrderId(int orderId)
         {
             return _eggRepository.GetEggGainedsByOrderId(orderId);
         }

@@ -13,9 +13,9 @@ namespace BLL.Services
     {
         private readonly OrderRepository _orderRepository;
 
-        public OrderService(OrderRepository orderRepository)
+        public OrderService()
         {
-            _orderRepository = orderRepository;
+            _orderRepository = new OrderRepository();
         }
 
         public List<OrderViewModel> GetOrdersForPatient(Guid patientId)

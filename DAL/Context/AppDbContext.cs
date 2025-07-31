@@ -46,8 +46,8 @@ namespace DAL.Context
 
             modelBuilder.Entity<OrderStep>()
                 .HasOne(e => e.ServiceStep)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<EmbryoGained>()
                 .HasOne(e => e.Order)

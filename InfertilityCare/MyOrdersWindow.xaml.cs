@@ -1,4 +1,5 @@
 ﻿using BLL.Services;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,43 +21,45 @@ namespace InfertilityCare
     /// </summary>
     public partial class MyOrdersWindow : Window
     {
-        private readonly OrderService _orderService;
-        private readonly Guid _patientId;
+        private readonly ApplicationUser _authentication;
 
-        public MyOrdersWindow(OrderService orderService, Guid patientId)
+        private readonly Patient _patient;
+
+        private readonly PatientService _patientService;
+
+        private readonly OrderService _orderService;
+
+        public MyOrdersWindow(ApplicationUser application)
         {
             InitializeComponent();
-            _orderService = orderService;
-            _patientId = patientId;
-
-            Loaded += MyOrdersWindow_Loaded;
+            _patientService = new PatientService();
+            _orderService = new OrderService();
+            _authentication = application;
+            _patient = _patientService.GetByUserId(_authentication.Id);
+            dgOrders.ItemsSource = LoadOrders();
         }
 
-        private void MyOrdersWindow_Loaded(object sender, RoutedEventArgs e)
+        public List<Order> LoadOrders()
         {
-            try
-            {
-                var orders = _orderService.GetOrdersForPatient(_patientId); // ← hàm đồng bộ
-                dgOrders.ItemsSource = orders; // ← cập nhật UI ngay
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải danh sách đơn khám: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            return _orderService.GetOrderByPatientId(_patient.Id);
         }
 
-
-
-        private void ViewDetails_Click(object sender, RoutedEventArgs e)
+        private void btnViewProgress_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            var orderId = button?.Tag?.ToString();
 
-            if (!string.IsNullOrEmpty(orderId))
+        }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            ReportProgressWindow reportProgressWindow = new ReportProgressWindow(int.Parse(txtOrderId.Text));
+            reportProgressWindow.ShowDialog();
+        }
+
+        private void dgOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dgOrders.SelectedItem is Order selectedOrder)
             {
-                // Chuyển sang trang chi tiết tiến trình
-                var progressWindow = new ReportProgressWindow();
-                progressWindow.ShowDialog();
+                txtOrderId.Text = selectedOrder.Id.ToString();
             }
         }
     }

@@ -8,6 +8,7 @@ namespace DAL.Enums
 {
     public enum StepStatus
     {
+        Scheduled,
         InProgress, 
         Completed
     }

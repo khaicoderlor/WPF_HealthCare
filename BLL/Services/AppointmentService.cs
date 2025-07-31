@@ -49,6 +49,11 @@ namespace BLL.Services
         {
             return _appointmentRepository.GetAppointmentsByOrderStepId(orderStepId);
         }
+
+        public Appointment? CreateAppointment(Appointment appointment)
+        {
+            return _appointmentRepository.CreateAppointment(appointment);
+        }
     }
 
 }

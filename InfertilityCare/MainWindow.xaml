@@ -150,9 +150,9 @@
                            Margin="0,0,20,0"/>
 
                 <Button x:Name="BookingButton"
-                        Grid.Column="2"
+                        Grid.Column="1"
                         Content="Booking"
-                        Style="{StaticResource PrimaryButton}"/>
+                        Style="{StaticResource PrimaryButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="93" Click="BookingButton_Click"/>
             </Grid>
         </Border>
 

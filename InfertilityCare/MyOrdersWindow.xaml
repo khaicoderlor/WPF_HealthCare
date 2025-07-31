@@ -1,27 +1,26 @@
 ﻿<Window x:Class="InfertilityCare.MyOrdersWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Lịch sử đơn khám của tôi" Height="550" Width="900"
+        Title="Gói điều trị của tôi" Height="550" Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#FAFAFA">
+    <Canvas>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Tiêu đề -->
-        <TextBlock Text="Lịch sử đơn khám"
+            <!-- Tiêu đề -->
+            <TextBlock Text="My orders"
                    FontSize="24"
                    FontWeight="Bold"
                    Foreground="#37474F"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,20"/>
+                   HorizontalAlignment="Left"
+                   Margin="357,0,0,20"/>
 
-        <!-- Bảng danh sách đơn khám -->
-        <DataGrid x:Name="dgOrders"
-                  Grid.Row="1"
+            <!-- Bảng danh sách đơn khám -->
+            <DataGrid x:Name="dgOrders"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   IsReadOnly="True"
@@ -31,31 +30,39 @@
                   ColumnHeaderHeight="40"
                   FontSize="14"
                   BorderBrush="#B0BEC5"
-                  BorderThickness="1"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch">
+                  BorderThickness="1" Margin="10,0,-10,-370" Grid.Row="1" SelectionChanged="dgOrders_SelectionChanged">
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Dịch vụ" Binding="{Binding ServiceName}" Width="*"/>
-                <DataGridTextColumn Header="Bác sĩ" Binding="{Binding DoctorName}" Width="*"/>
-                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" Width="*"/>
-                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding StartDate}" Width="*"/>
-                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding EndDate}" Width="*"/>
-                <DataGridTemplateColumn Header="Chi tiết" Width="120">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Xem chi tiết"
-                                    Padding="5,2"
-                                    Background="#0288D1"
-                                    Foreground="White"
-                                    BorderBrush="#0277BD"
-                                    Cursor="Hand"
-                                    Click="ViewDetails_Click"
-                                    Tag="{Binding Id}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Order ID" Binding="{Binding Id}" Width="70"/>
+                    <DataGridTextColumn Header="Service" Binding="{Binding Service.Name}" Width="70"/>
+                    <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor.FullName}" Width="130"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="80"/>
+                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="120"/>
+                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="120"/>
+                    <DataGridTextColumn Header="Frozen Storage" Binding="{Binding IsFrozen}" Width="120"/>
+                    <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Label Content="Order ID:"
+               FontSize="16" FontWeight="SemiBold"
+               Canvas.Left="32" Canvas.Top="469"
+               Foreground="#37474F"/>
+        <TextBox x:Name="txtOrderId" HorizontalAlignment="Left" VerticalAlignment="Center" Width="337" Canvas.Left="113" Canvas.Top="476" IsEnabled="False"/>
+
+        <Button x:Name="btnViewProgress" Content="View Progress"
+                Width="120" Height="40"
+                Background="#42A5F5" Foreground="White"
+                FontSize="16" FontWeight="Bold"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Canvas.Left="712" Canvas.Top="460" Click="btnViewProgress_Click" />
+
+        <Button x:Name="btnReport" Content="Report"
+                Width="120" Height="40"
+                Background="DarkGreen" Foreground="White"
+                FontSize="16" FontWeight="Bold"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                Canvas.Left="567" Canvas.Top="460" Click="btnReport_Click" />
+    </Canvas>
 </Window>
