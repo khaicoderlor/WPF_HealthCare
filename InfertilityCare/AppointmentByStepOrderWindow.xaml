@@ -16,5 +16,6 @@
                 <DataGridTextColumn Header="ExtraFee" Binding="{Binding ExtraFee}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Name="btnMakeStatusCompleted" Content="Completed" Margin="699,318,32,82" Click="btnMakeStatusCompleted_Click"/>
     </Grid>
 </Window> 

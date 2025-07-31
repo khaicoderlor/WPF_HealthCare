@@ -34,5 +34,26 @@ namespace InfertilityCare
         {
             dgAppointment.ItemsSource = _appointmentService.GetAppointmentsByOrderStepId(step.Id);
         }
+
+        private void btnMakeStatusCompleted_Click(object sender, RoutedEventArgs e)
+        {
+            if(dgAppointment.SelectedItem is Appointment appointment)
+            {
+                var updatedAppointment = _appointmentService.MarkStatusAppointment(appointment.Id.ToString(), "Completed");
+                if (updatedAppointment != null)
+                {
+                    MessageBox.Show("Appointment marked as completed successfully.");
+                    LoadAppointmentByStepOrder();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to mark appointment as completed.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment to mark as completed.");
+            }
+        }
     }
 }
