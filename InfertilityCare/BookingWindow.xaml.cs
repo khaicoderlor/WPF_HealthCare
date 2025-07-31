@@ -108,7 +108,9 @@ namespace InfertilityCare
                 _context.SaveChanges(); // nếu bạn muốn tạo lần lượt
 
             }
+            MessageBox.Show("Booking successful!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             DialogResult = true;
+
         }
     }
 }
