@@ -36,6 +36,9 @@ namespace InfertilityCare
             _eggService = new EggService();
             this.order = order;
             orderSteps = order.Steps.ToList();
+            LoadEggGrade();
+            LoadEggInStock();
+            LoadEmbryoGrade();
         }
 
         private void LoadEggGrade()
@@ -47,6 +50,23 @@ namespace InfertilityCare
             cbxEggGrade.ItemsSource = eggGrades;
         }
 
+
+        private void LoadEggInStock()
+        {
+            cbxEggInStock.ItemsSource = _eggService.GetEggGainedsByOrderId(order.Id);
+            cbxEggInStock.DisplayMemberPath = "Grade";
+            cbxEggInStock.SelectedValuePath = "Id";
+        }
+
+        private void LoadEmbryoGrade()
+        {
+            List<string> embryoGrades = new()
+            {
+                 "AA", "AB", "BB", "BC", "A", "B" 
+            };
+            cbxGradeEmbryo.ItemsSource = embryoGrades;
+
+        }
         private void btnMarkCompleted_Click(object sender, RoutedEventArgs e)
         {
             if(dgOrderSteps.SelectedItem is OrderStep selectedStep)
@@ -58,6 +78,15 @@ namespace InfertilityCare
 
         private void btnAddEmbryo_Click(object sender, RoutedEventArgs e)
         {
+            EmbryoGained embryoGained = new EmbryoGained()
+            {
+                DateGained = DateTime.Now,
+                Grade = cbxGradeEmbryo.SelectedItem?.ToString(),
+                EggGainedId = (int)cbxEggInStock.SelectedValue,
+                OrderId = order.Id,
+                IsFrozen = false,
+                Status = false,
+            };
 
         }
 

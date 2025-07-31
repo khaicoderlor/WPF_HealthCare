@@ -62,10 +62,10 @@
         <ComboBox x:Name="cbxEggGrade" Canvas.Left="650" Canvas.Top="316" HorizontalAlignment="Left" VerticalAlignment="Center" Width="108"/>
 
         <Label Content="Grade" Canvas.Left="603" Canvas.Top="314"/>
-        <ComboBox x:Name="" Canvas.Left="780" Canvas.Top="475" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.503,3.432"/>
+        <ComboBox x:Name="cbxEggInStock" Canvas.Left="780" Canvas.Top="475" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.503,3.432"/>
 
         <Label Content="" Canvas.Left="565" Canvas.Top="353"/>
-        <ComboBox Canvas.Left="780" Canvas.Top="426" Width="108" RenderTransformOrigin="0.503,3.432" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <ComboBox Name="cbxGradeEmbryo" Canvas.Left="780" Canvas.Top="426" Width="108" RenderTransformOrigin="0.503,3.432" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Content="Grade" Canvas.Left="716" Canvas.Top="424" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.502,0.81"/>
         <Label Content="Egg In Stock" Canvas.Left="699" Canvas.Top="473" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
