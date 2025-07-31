@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BLL.Services;
+using DAL.Entities;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace InfertilityCare
         public List<OrderStep> orderSteps { get; set; }
 
         private readonly OrderStepRepository orderStepRepository;
+        private readonly EggService _eggService;
 
         public Order order { get; set; }
 
@@ -31,8 +33,18 @@ namespace InfertilityCare
         {
             InitializeComponent();
             orderStepRepository = new OrderStepRepository();
+            _eggService = new EggService();
             this.order = order;
             orderSteps = order.Steps.ToList();
+        }
+
+        private void LoadEggGrade()
+        {
+            List<string> eggGrades = new()
+            {
+                "M2", "M1", "GV"
+            };
+            cbxEggGrade.ItemsSource = eggGrades;
         }
 
         private void btnMarkCompleted_Click(object sender, RoutedEventArgs e)
@@ -51,7 +63,13 @@ namespace InfertilityCare
 
         private void btnAddEgg_Click(object sender, RoutedEventArgs e)
         {
-            
+            EggGained eggGained = new EggGained()
+            {
+                DateGained = DateTime.Now,
+                Grade = cbxEggGrade.SelectedItem?.ToString(),
+                OrderId = order.Id
+            };
+            _eggService.AddEggGained(eggGained);
 
         }
 
