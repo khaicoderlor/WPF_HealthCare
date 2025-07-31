@@ -1,0 +1,20 @@
+﻿<Window x:Class="InfertilityCare.AppointmentByStepOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InfertilityCare"
+        mc:Ignorable="d"
+        Title="AppointmentByStepOrderWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="dgAppointment" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="DoctorId" Binding="{Binding DoctorId}" Width="*"/>
+                <DataGridTextColumn Header="PatientId" Binding="{Binding PatientId}" Width="*"/>
+                <DataGridTextColumn Header="AppointmentDate" Binding="{Binding AppointmentDate}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                <DataGridTextColumn Header="ExtraFee" Binding="{Binding ExtraFee}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window> 
